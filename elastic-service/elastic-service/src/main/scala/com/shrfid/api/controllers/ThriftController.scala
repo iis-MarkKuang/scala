@@ -49,31 +49,31 @@ class ThriftController @Inject() (
 
   override val insertBookBranch = handle(InsertBookBranch) { args: InsertBookBranch.Args =>
     elasticService.insertBookBranch(args.user, PostBookBranchRequest(
-      args.request._1,
-      args.request._2,
-      args.request._3,
-      args.request._4,
-      args.request._5
+      args.request.authorization,
+      args.request.name,
+      args.request.isActive,
+      args.request.isRoot,
+      args.request.description
     )).map(a => a._2)
   }
 
   override val findBookBranchById = handle(FindBookBranchById) { args: FindBookBranchById.Args =>
     elasticService.findBookBranchById(args.user, GetBookBranchByIdRequest(
-      args.request._1,
-      args.request._2
+      args.request.authorization,
+      args.request.id
     )).map(a => a._2)
   }
 
   override val findBookBranches = handle(FindBookBranches) { args: FindBookBranches.Args =>
     elasticService.findBookBranches(GetBookBranchListRequest(
-      args.request._1,
-      args.request._2,
-      args.request._3,
-      args.request._4,
-      args.request._5,
-      args.request._6,
-      args.request._7,
-      args.request._8
+      args.request.authorization,
+      args.request.limit,
+      args.request.offset,
+      args.request.id,
+      args.request.name,
+      args.request.isActive,
+      args.request.isRoot,
+      args.request.ordering
     )).map(a => a._2)
   }
 
@@ -122,40 +122,40 @@ class ThriftController @Inject() (
 
   override val findBookStacks = handle(FindBookStacks) { args: FindBookStacks.Args =>
     elasticService.findBookStacks(GetBookStackListRequest(
-      args.request._1,
-      args.request._2,
-      args.request._3,
-      args.request._4,
-      args.request._5,
-      args.request._6,
-      args.request._7,
-      args.request._8
+      args.request.authorization,
+      args.request.limit,
+      args.request.offset,
+      args.request.id,
+      args.request.name,
+      args.request.branch,
+      args.request.isActive,
+      args.request.ordering
     )).map(a => a._2)
   }
 
   override val updateBookStackById = handle(UpdateBookStackById) { args: UpdateBookStackById.Args =>
     elasticService.updateBookStackById(args.user, PatchBookStackByIdRequest(
-      args.request._1,
-      args.request._2,
-      args.request._3,
-      args.request._4,
-      args.request._5,
-      args.request._6,
-      args.request._7
+      args.request.authorization,
+      args.request.id,
+      args.request.name,
+      args.request.isActive,
+      args.request.branchId,
+      args.request.description,
+      args.request.datetime
     )).map(a => a._2)
   }
 
   override val deleteBookStackById = handle(DeleteBookStackById) { args: DeleteBookStackById.Args =>
     elasticService.deleteBookStackById(args.user, DeleteBookStackByIdRequest(
-      args.request._1,
-      args.request._2
+      args.request.authorization,
+      args.request.id
     )).map(a => a._2)
   }
 
   override val deleteBookStackBulk = handle(DeleteBookStackBulk) { args: DeleteBookStackBulk.Args =>
     elasticService.deleteBookStackBulk(args.user, DeleteBookStackBulkRequest(
-      args.request._1,
-      args.request._2
+      args.request.authorization,
+      args.request.ids
     )).map(a => a._2)
   }
 
@@ -171,54 +171,54 @@ class ThriftController @Inject() (
 
   override val findReference = handle(FindReference) { args: FindReference.Args =>
     elasticService.findReference(GetBookReferenceListRequest(
-      args.request._1,
-      args.request._2,
-      args.request._3,
-      args.request._4,
-      args.request._5,
-      args.request._6,
-      args.request._7,
-      args.request._8,
-      args.request._9,
-      args.request._10,
-      args.request._11,
-      args.request._12,
-      args.request._13
+      args.request.authorization,
+      args.request.limit,
+      args.request.offset,
+      args.request.id,
+      args.request.keyword,
+      args.request.author,
+      args.request.title,
+      args.request.isbn,
+      args.request.publisher,
+      args.request.clc,
+      args.request.publishYear,
+      args.request.topic,
+      args.request.ordering
     )).map(a => a._2)
   }
 
   override val preGenBookItems = handle(PreGenBookItems) { args: PreGenBookItems.Args =>
     elasticService.preGenBookItems(args.user, PostPreGenBookItemsRequest(
-      args.request._1,
-      args.request._2,
-      args.request._3,
-      args.request._4
+      args.request.authorization,
+      args.request.categoryId,
+      args.request.stackId,
+      args.request.quantity
     )).map(a => a._2)
   }
 
   override val findBookItemById = handle(FindBookItemById) { args: FindBookItemById.Args =>
     elasticService.findBookItemById(args.user, GetBookItemByIdRequest(
-      args.request._1,
-      args.request._2
+      args.request.authorization,
+      args.request.id
     )).map(a => a._2)
   }
 
   override val findBookItems = handle(FindBookItems) { args: FindBookItems.Args =>
     elasticService.findBookItems(args.user, GetBookItemListRequest(
-      args.request._1,
-      args.request._2,
-      args.request._3,
-      args.request._4,
-      args.request._5,
-      args.request._6,
-      args.request._7,
-      args.request._8,
-      args.request._9,
-      args.request._10,
-      args.request._11,
-      args.request._12,
-      args.request._13,
-      args.request._14
+      args.request.authorization,
+      args.request.limit,
+      args.request.offset,
+      args.request.id,
+      args.request.reference,
+      args.request.title,
+      args.request.barcode,
+      args.request.rfid,
+      args.request.categoryId,
+      args.request.stackId,
+      args.request.clc,
+      args.request.isAvailable,
+      args.request.isActive,
+      args.request.ordering
     )).map(a => a._2)
   }
 
