@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="SBT: com.twitter:scrooge-sbt-plugin:4.5.0:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/scala_2.10/sbt_0.13/com.twitter/scrooge-sbt-plugin/jars/scrooge-sbt-plugin-4.5.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/scala_2.10/sbt_0.13/com.twitter/scrooge-sbt-plugin/srcs/scrooge-sbt-plugin-4.5.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

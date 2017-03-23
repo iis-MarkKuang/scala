@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="SBT: com.github.foursquare:twitter-util-async:516e77a:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.github.foursquare/twitter-util-async/jars/twitter-util-async-516e77a.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/com.github.foursquare/twitter-util-async/srcs/twitter-util-async-516e77a-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

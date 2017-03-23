@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="SBT: pl.project13.scala:sbt-jmh:0.2.2:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/scala_2.10/sbt_0.13/pl.project13.scala/sbt-jmh/jars/sbt-jmh-0.2.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/scala_2.10/sbt_0.13/pl.project13.scala/sbt-jmh/srcs/sbt-jmh-0.2.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
