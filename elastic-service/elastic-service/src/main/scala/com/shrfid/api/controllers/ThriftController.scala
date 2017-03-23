@@ -7,7 +7,7 @@ import com.shrfid.api._
 import com.google.inject.Inject
 import com.shrfid.api.domains.book.BookReference
 import com.shrfid.api.domains.reader.{BorrowRule => DomainBorrowRule, PenaltyRule => DomainPenaltyRule}
-import com.shrfid.api.services.{BookService, BranchService, ElasticService, ReaderService}
+import com.shrfid.api.services.ElasticService
 import com.twitter.finatra.thrift.Controller
 import com.elastic_service.elasticServer.ElasticServerThrift._
 import com.elastic_service.elasticServer._
