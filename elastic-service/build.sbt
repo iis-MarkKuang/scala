@@ -96,9 +96,9 @@ lazy val `shrfid` = (project in file(".")).aggregate(
 
 lazy val shrfidCommon = (project in file("shrfid-common")).settings(commonSettings: _*)
   .settings(
-//      scroogeThriftDependencies in Compile := Seq(
-//        "finatra-thrift_2.11"
-//      ),
+      scroogeThriftDependencies in Compile := Seq(
+        "finatra-thrift_2.11"
+      ),
     libraryDependencies ++= Seq(
       finatraHttp,
       finatraHttpClient,

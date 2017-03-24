@@ -101,8 +101,8 @@ struct GetBookBranchByIdRequestThrift {
 
 struct GetBookBranchListRequestThrift {
     1: required string Authorization;
-    2: required i32 limit = 100;
-    3: required i32 offset = 0;
+    2: optional i32 limit = 100;
+    3: optional i32 offset = 0;
     4: optional string id;
     5: optional string name;
     6: optional bool isActive;
@@ -133,9 +133,9 @@ struct DeleteBookBranchBulkRequestThrift {
 struct PostBookStackRequestThrift {
     1: required string Authorization;
     2: required string name;
-    3: required bool isActive = true;
+    3: optional bool isActive = true;
     4: required string branchId;
-    5: required string description = ""
+    5: optional string description = ""
 }
 
 struct GetBookStackByIdRequestThrift {
@@ -145,8 +145,8 @@ struct GetBookStackByIdRequestThrift {
 
 struct GetBookStackListRequestThrift {
     1: required string Authorization;
-    2: required i32 limit = 100;
-    3: required i32 offset = 0;
+    2: optional i32 limit = 100;
+    3: optional i32 offset = 0;
     4: optional string id;
     5: optional string name;
     6: optional string branch;
@@ -176,8 +176,8 @@ struct DeleteBookStackBulkRequestThrift {
 
 struct GetBookReferenceListRequestThrift {
     1: required string Authorization;
-    2: required i32 limit = 100;
-    3: required i32 offset = 0;
+    2: optional i32 limit = 100;
+    3: optional i32 offset = 0;
     4: optional string id;
     5: optional string keyword;
     6: optional string author;
@@ -199,8 +199,8 @@ struct PostPreGenBookItemsRequestThrift {
 
 struct GetBookItemListRequestThrift {
     1: required string Authorization;
-    2: required i32 limit = 100;
-    3: required i32 offset = 0;
+    2: optional i32 limit = 100;
+    3: optional i32 offset = 0;
     4: optional string id;
     5: optional string reference;
     6: optional string title;
@@ -226,24 +226,14 @@ struct PostBookItemRequestThrift {
     4: optional string reference;
     5: required string stackId;
     6: optional BookReferenceThrift info;
-    7: required i32 categoryId = 1
+    7: optional i32 categoryId = 1
 }
 
 struct PostVendorMemberRequestThrift {
     1: required string Authorization;
     2: required string name;
-    3: required bool isActive = true;
-    4: string description = "";
-}
-
-struct GetVendorMemberListRequestThrift {
-    1: required string Authorization;
-    2: i32 limit = 100;
-    3: i32 offset = 0;
-    4: optional string id;
-    5: optional string name;
-    6: optional bool isActive;
-    7: optional string ordering
+    3: optional bool isActive = true;
+    4: optional string description = "";
 }
 
 struct GetVendorMemberByIdRequestThrift {
@@ -253,8 +243,8 @@ struct GetVendorMemberByIdRequestThrift {
 
 struct GetVendorMemberListRequestThrift {
     1: required string Authorization;
-    2: i32 limit = 100;
-    3: i32 offset = 0;
+    2: optional i32 limit = 100;
+    3: optional i32 offset = 0;
     4: optional string id;
     5: optional string name;
     6: optional bool isActive;
@@ -321,8 +311,8 @@ struct GetVendorOrderByIdRequestThrift {
 
 struct GetVendorOrderListRequestThrift {
     1: required string Authorization;
-    2: i32 limit = 100;
-    3: i32 offset = 0;
+    2: optional i32 limit = 100;
+    3: optional i32 offset = 0;
     4: optional string id;
     5: optional string vendorId;
     6: optional string isbn;
@@ -372,7 +362,7 @@ struct PostReaderLevelRequestThrift {
     3: double deposit;
     4: BorrowRuleThrift borrowRule;
     5: PenaltyRuleThrift penaltyRule;
-    6: string description = ""
+    6: optional string description = ""
 }
 
 struct GetReaderGroupByIdRequestThrift {
@@ -732,6 +722,8 @@ service ElasticServerThrift {
   string deleteVendorOrderById(
     1: Username user,
     2: DeleteVendorOrderByIdRequestThrift request
+//  ) throws (
+//    1: finatra_thrift_exceptions.ClientError clientError
   )
 
   string deleteVendorOrderBulk(

@@ -1,5 +1,6 @@
 package com.shrfid.api.http.Elastic.reader.member
 
+import com.elastic_service.elasticServer.PatchReaderMemberByIdRequestThrift
 import com.shrfid.api._
 import com.shrfid.api.http.Elastic.BasePatchByIdRequest
 import com.twitter.finatra.request.{Header, QueryParam, RouteParam}
@@ -26,6 +27,34 @@ case class PatchReaderMemberBulkRequest(@Header Authorization: String,
 
 }
 
+object PatchReaderMemberByIdRequest {
+
+  /*
+   ** Added by kuang 23/3/2017
+   */
+  def toDomain(requestThrift: PatchReaderMemberByIdRequestThrift): PatchReaderMemberByIdRequest = {
+    PatchReaderMemberByIdRequest(
+      requestThrift.authorization,
+      requestThrift.id,
+      requestThrift.action,
+      requestThrift.days,
+      requestThrift.barcode,
+      requestThrift.rfid,
+      requestThrift.fullName,
+      requestThrift.gender,
+      requestThrift.email,
+      requestThrift.mobile,
+      requestThrift.address,
+      requestThrift.postcode,
+      requestThrift.dob,
+      requestThrift.levelId,
+      requestThrift.groupIds,
+      requestThrift.profileImage,
+      requestThrift.isActive
+    )
+  }
+}
+
 case class PatchReaderMemberByIdRequest(@Header Authorization: String,
                                         @RouteParam id: String,
                                         @QueryParam action: String,
@@ -43,22 +72,21 @@ case class PatchReaderMemberByIdRequest(@Header Authorization: String,
                                         groupIds: Option[Seq[String]],
                                         profileImage: Option[String],
                                         isActive: Option[Boolean],
-                                        datetime: String = Time.now.toString)
-  extends BasePatchByIdRequest(Authorization, id, datetime) {
+datetime: String = Time.now.toString)
+extends BasePatchByIdRequest(Authorization, id, datetime) {
 
 
   @MethodValidation
   def validateAction = {
     ValidationResult.validate(
-      Seq("inactivate", "suspend", "card", "info").contains(action) && (action == "inactivate"
-        || "suspend" == action && days.isDefined || "card" == action && barcode.isDefined && rfid.isDefined || action == "info"),
-      s"""'action' must be 'inactivate', 'suspend', 'card', 'info'
-          | 1. when 'action' == inactivate, 'is_active' is required
-          | 2. when 'action' == suspend, 'days' is required
-          | 3. when 'action' == card, 'barcode' and 'rfid' is required
+    Seq("inactivate", "suspend", "card", "info").contains(action) && (action == "inactivate"
+    || "suspend" == action && days.isDefined || "card" == action && barcode.isDefined && rfid.isDefined || action == "info"),
+    s"""'action' must be 'inactivate', 'suspend', 'card', 'info'
+       | 1. when 'action' == inactivate, 'is_active' is required
+       | 2. when 'action' == suspend, 'days' is required
+       | 3. when 'action' == card, 'barcode' and 'rfid' is required
        """.stripMargin)
   }
-
 
   override def patchRequest = {
     //val a = getCCParams(this, Seq("id", "Authorization", "action"))
@@ -76,4 +104,6 @@ case class PatchReaderMemberByIdRequest(@Header Authorization: String,
         }
     }
   }
+
+
 }

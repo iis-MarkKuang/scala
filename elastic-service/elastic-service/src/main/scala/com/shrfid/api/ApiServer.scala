@@ -3,6 +3,7 @@ package com.shrfid.api
 import java.io.FileInputStream
 import java.net.InetSocketAddress
 
+import com.twitter.finagle.Thrift
 import com.twitter.conversions.time._
 import com.shrfid.api.modules.{ApiServiceThriftClientIdModule, ServicesModule}
 import com.elastic_service.elasticServer.{ElasticServerThrift$FinagleClient, GetBookStackByIdRequestThrift}
@@ -19,7 +20,7 @@ import com.twitter.finatra.thrift.{ThriftClientExceptionMapper, ThriftFilter}
 import com.twitter.finatra.thrift.filters._
 import com.twitter.inject.Logging
 import com.twitter.server.TwitterServer
-import com.twitter.util.Await
+import com.twitter.util.{Await, Future}
 
 // Added by Kuang
 import com.twitter.finatra.thrift.ThriftServer
@@ -213,13 +214,13 @@ object ElasticClientMain {
       .tcpConnectTimeout(3.seconds)
       .build()
 
-    val client = new ElasticServerThrift$FinagleClient(service)
-    val futureRes = client.findBookStackById("user123", new GetBookStackByIdRequestThriftImpl())
-
-    futureRes onSuccess( a => println(a) )
-    futureRes onFailure( ex => println(ex) )
-
-//    val futureRes2 = client.insertBookStack("user246", new PostBookStackRequestThriftImpl())
+//    val client = new ElasticServerThrift$FinagleClient(service)
+    val client = Thrift.client.newIface[ElasticServerThrift[Future]]("127.0.0.1:9995")
+//    val futureRes = client.findBookStackById("user123", new GetBookStackByIdRequestThriftImpl())
+//
+//    futureRes onSuccess( a => println(a) )
+//    futureRes onFailure( ex => println(ex) )
+    //    val futureRes2 = client.insertBookStack("user246", new PostBookStackRequestThriftImpl())
 //    futureRes2 onSuccess( a => println(a) )
 //    futureRes2 onFailure( ex => println(ex) )
 //
@@ -227,9 +228,9 @@ object ElasticClientMain {
 //    futureRes3 onSuccess( a => println(a) )
 //    futureRes3 onFailure( ex => println(ex) )
 
-    val futureRes4 = client.updateVendorMemberById("user132", new PatchVendorMemberByIdRequestThriftImpl())
-    futureRes4 onSuccess( a => println(a) )
-    futureRes4 onFailure( ex => println(ex) )
+//    val futureRes4 = client.updateVendorMemberById("user132", new PatchVendorMemberByIdRequestThriftImpl())
+//    futureRes4 onSuccess( a => println(a) )
+//    futureRes4 onFailure( ex => println(ex) )
   }
 }
 

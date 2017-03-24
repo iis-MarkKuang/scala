@@ -29,9 +29,6 @@ import org.joda.time.format.DateTimeFormat
   * Created by kuang on 2017/3/18.
   */
 class ThriftController @Inject() (
-//  bookService: ,
-//  readerService: ReaderService,
-//  branchService: BranchService,
   elasticService: ElasticService,
   responseBuilder: ResponseBuilder
 )
@@ -42,18 +39,13 @@ class ThriftController @Inject() (
     Future(args.a + 1)
   }
 
-
   override val updateBookInfoItem = handle(UpdateBookInfoItem) { args: UpdateBookInfoItem.Args =>
     elasticService.updateBookInfoItem(args.id, args.item, args.oldId)
   }
 
   override val insertBookBranch = handle(InsertBookBranch) { args: InsertBookBranch.Args =>
-    elasticService.insertBookBranch(args.user, PostBookBranchRequest(
-      args.request.authorization,
-      args.request.name,
-      args.request.isActive,
-      args.request.isRoot,
-      args.request.description
+    elasticService.insertBookBranch(args.user, PostBookBranchRequest.toDomain(
+      args.request
     )).map(a => a._2)
   }
 
@@ -536,26 +528,7 @@ class ThriftController @Inject() (
   }
 
   override val patchReaderMemberById = handle(PatchReaderMemberById) { args: PatchReaderMemberById.Args =>
-    elasticService.patchReaderMemberById(args.user, PatchReaderMemberByIdRequest(
-      args.request._1,
-      args.request._2,
-      args.request._3,
-      args.request._4,
-      args.request._5,
-      args.request._6,
-      args.request._7,
-      args.request._8,
-      args.request._9,
-      args.request._10,
-      args.request._11,
-      args.request._12,
-      args.request._13,
-      args.request._14,
-      args.request._15,
-      args.request._16,
-      args.request._17,
-      args.request._18
-    )).map(a => a._2)
+    elasticService.patchReaderMemberById(args.user, PatchReaderMemberByIdRequest.toDomain(args.request)).map(a => a._2)
   }
 
   override val borrowItems = handle(BorrowItems) { args: BorrowItems.Args =>
