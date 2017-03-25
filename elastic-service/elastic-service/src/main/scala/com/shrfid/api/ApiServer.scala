@@ -214,12 +214,16 @@ object ElasticClientMain {
       .tcpConnectTimeout(3.seconds)
       .build()
 
-//    val client = new ElasticServerThrift$FinagleClient(service)
-    val client = Thrift.client.newIface[ElasticServerThrift[Future]]("127.0.0.1:9995")
-//    val futureRes = client.findBookStackById("user123", new GetBookStackByIdRequestThriftImpl())
-//
-//    futureRes onSuccess( a => println(a) )
-//    futureRes onFailure( ex => println(ex) )
+    val client = new ElasticServerThrift$FinagleClient(service)
+//    val client = Thrift.client.newIface[ElasticServerThrift[Future]]("127.0.0.1:9995")
+    val futureRes = client.increment(1)
+
+    futureRes onSuccess( a => println(a) )
+    futureRes onFailure( ex => println(ex) )
+    val futureRes2 = client.findBookStackById("user123", new GetBookStackByIdRequestThriftImpl())
+
+    futureRes2 onSuccess( a => println(a) )
+    futureRes2 onFailure( ex => println(ex) )
     //    val futureRes2 = client.insertBookStack("user246", new PostBookStackRequestThriftImpl())
 //    futureRes2 onSuccess( a => println(a) )
 //    futureRes2 onFailure( ex => println(ex) )

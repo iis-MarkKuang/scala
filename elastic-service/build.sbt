@@ -6,17 +6,17 @@ version := "1.0"
 
 val suffix = ""
 
-val libVersion = "6.38.0" + suffix
-val utilVersion = "6.37.0" + suffix
+val libVersion = "latest.integration" + suffix
+val utilVersion = "latest.integration" + suffix
 //val finagleHttpxVersion = "6.27.0"
-val scroogeVersion = "4.10.0" + suffix
-val libThriftVersion = "0.5.0-1"
+val scroogeVersion = "4.15.0" + suffix
+val libThriftVersion = "latest.integration"
 val finatraVersion = "2.4.0"
 val guiceVersion = "4.0"
 val logbackVersion = "1.0.13"
 val twitterServerVersion = "1.23.0"
 val mockitoCoreVersion = "1.9.5"
-val scalaTestVersion = "2.2.3"
+val scalaTestVersion = "latest.integration"
 val specs2Version = "2.3.12"
 val typesafeConfigVersion = "1.3.0"
 val finagleOAuth2Version = "0.1.5"

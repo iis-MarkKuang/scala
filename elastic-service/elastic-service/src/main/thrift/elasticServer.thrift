@@ -841,5 +841,4 @@ service ElasticServerThrift {
     1: Username user,
     2: PostBookItemsReturnRequestThrift request
   )
-
 }

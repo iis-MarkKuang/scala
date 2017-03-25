@@ -1,0 +1,316 @@
+2017-03-23 10:56:31,422 INF                  -                             ElasticServerMain$        Process started
+2017-03-23 10:56:41,627 INF                  -                             HikariDataSource          slick.db - Started.
+2017-03-23 10:56:41,964 INF                  -                             ElasticServerMain$        Resolving Finagle clients before warmup
+2017-03-23 10:56:42,115 INF                  -                             ElasticServerMain$        Done resolving clients: [192.168.0.197:6379, api.douban.com:443].
+2017-03-23 10:56:42,116 INF                  -                             FinagleBuildRevision$     Resolved Finagle build revision: (rev=56e7cf55b5174fbb3e481e73984ea62a3a3c63da)
+2017-03-23 10:56:42,839 INF                  -                             ThriftRouter              Adding methods
+ThriftController.increment
+ThriftController.updateBookInfoItem
+ThriftController.insertBookBranch
+ThriftController.findBookBranchById
+ThriftController.findBookBranches
+ThriftController.updateBookBranchById
+ThriftController.deleteBookBranchById
+ThriftController.deleteBookBranchBulk
+ThriftController.insertBookStack
+ThriftController.findBookStackById
+ThriftController.findBookStacks
+ThriftController.updateBookStackById
+ThriftController.deleteBookStackById
+ThriftController.deleteBookStackBulk
+ThriftController.insertReference
+ThriftController.findReferenceById
+ThriftController.findReference
+ThriftController.preGenBookItems
+ThriftController.findBookItemById
+ThriftController.findBookItems
+ThriftController.catalogue
+ThriftController.insertVendorMember
+ThriftController.findVendorMemberById
+ThriftController.findVendorMembers
+ThriftController.updateVendorMemberById
+ThriftController.deleteVendorMemberById
+ThriftController.deleteVendorMemberBulk
+ThriftController.insertVendorOrder
+ThriftController.insertVendorOrderBulk
+ThriftController.findVendorOrderById
+ThriftController.findVendorOrders
+ThriftController.updateVendorOrders
+ThriftController.deleteVendorOrderById
+ThriftController.deleteVendorOrderBulk
+ThriftController.insertReaderLevel
+ThriftController.findReaderLevelById
+ThriftController.findReaderLevels
+ThriftController.updateReaderLevelById
+ThriftController.deleteReaderLevelById
+ThriftController.deleteReaderLevelBulk
+ThriftController.insertReaderGroup
+ThriftController.findReaderGroupById
+ThriftController.findReaderGroups
+ThriftController.updateReaderGroup
+ThriftController.deleteReaderGroupById
+ThriftController.deleteReaderGroupBulk
+ThriftController.insertReaderMember
+ThriftController.insertReaderMemberBulk
+ThriftController.findReaderMemberById
+ThriftController.findReaderMembers
+ThriftController.patchReaderMemberBulk
+ThriftController.patchReaderMemberById
+ThriftController.borrowItems
+ThriftController.renewItems
+ThriftController.findBorrowRecords
+ThriftController.returnBooks
+2017-03-23 10:56:43,000 INF                  -                             ElasticServerMain$        Warming up.
+2017-03-23 10:56:44,236 INF                  -                             ElasticServerMain$        thrift server started on port: 9995
+2017-03-23 10:56:44,249 INF                  -                             HttpRouter                Adding routes
+
+2017-03-23 10:56:44,255 INF                  -                             ElasticServerMain$         => com.twitter.server.handler.AdminRedirectHandler
+2017-03-23 10:56:44,255 INF                  -                             ElasticServerMain$        /admin => com.twitter.server.handler.SummaryHandler
+2017-03-23 10:56:44,255 INF                  -                             ElasticServerMain$        /admin/server_info => com.twitter.finagle.Filter$$anon$1
+2017-03-23 10:56:44,255 INF                  -                             ElasticServerMain$        /admin/contention => com.twitter.finagle.Filter$$anon$1
+2017-03-23 10:56:44,255 INF                  -                             ElasticServerMain$        /admin/lint => com.twitter.server.handler.LintHandler
+2017-03-23 10:56:44,255 INF                  -                             ElasticServerMain$        /admin/lint.json => com.twitter.server.handler.LintHandler
+2017-03-23 10:56:44,255 INF                  -                             ElasticServerMain$        /admin/threads => com.twitter.server.handler.ThreadsHandler
+2017-03-23 10:56:44,255 INF                  -                             ElasticServerMain$        /admin/threads.json => com.twitter.server.handler.ThreadsHandler
+2017-03-23 10:56:44,255 INF                  -                             ElasticServerMain$        /admin/announcer => com.twitter.finagle.Filter$$anon$1
+2017-03-23 10:56:44,255 INF                  -                             ElasticServerMain$        /admin/dtab => com.twitter.finagle.Filter$$anon$1
+2017-03-23 10:56:44,255 INF                  -                             ElasticServerMain$        /admin/pprof/heap => com.twitter.server.handler.HeapResourceHandler
+2017-03-23 10:56:44,256 INF                  -                             ElasticServerMain$        /admin/pprof/profile => com.twitter.server.handler.ProfileResourceHandler
+2017-03-23 10:56:44,256 INF                  -                             ElasticServerMain$        /admin/pprof/contention => com.twitter.server.handler.ProfileResourceHandler
+2017-03-23 10:56:44,256 INF                  -                             ElasticServerMain$        /admin/ping => com.twitter.server.handler.ReplyHandler
+2017-03-23 10:56:44,256 INF                  -                             ElasticServerMain$        /admin/shutdown => com.twitter.server.handler.ShutdownHandler
+2017-03-23 10:56:44,256 INF                  -                             ElasticServerMain$        /admin/tracing => com.twitter.server.handler.TracingHandler
+2017-03-23 10:56:44,256 INF                  -                             ElasticServerMain$        /admin/events => com.twitter.server.handler.EventsHandler
+2017-03-23 10:56:44,256 INF                  -                             ElasticServerMain$        /admin/events/record/ => com.twitter.server.handler.EventRecordingHandler
+2017-03-23 10:56:44,256 INF                  -                             ElasticServerMain$        /admin/logging => com.twitter.server.handler.LoggingHandler
+2017-03-23 10:56:44,256 INF                  -                             ElasticServerMain$        /admin/metrics => com.twitter.server.handler.MetricQueryHandler
+2017-03-23 10:56:44,257 INF                  -                             ElasticServerMain$        /admin/clients/ => com.twitter.server.handler.ClientRegistryHandler
+2017-03-23 10:56:44,257 INF                  -                             ElasticServerMain$        /admin/servers/ => com.twitter.server.handler.ServerRegistryHandler
+2017-03-23 10:56:44,257 INF                  -                             ElasticServerMain$        /admin/files/ => com.twitter.server.handler.ResourceHandler
+2017-03-23 10:56:44,257 INF                  -                             ElasticServerMain$        /admin/registry.json => com.twitter.server.handler.RegistryHandler
+2017-03-23 10:56:44,257 INF                  -                             ElasticServerMain$        /admin/toggles => com.twitter.server.handler.ToggleHandler
+2017-03-23 10:56:44,257 INF                  -                             ElasticServerMain$        /admin/toggles/ => com.twitter.server.handler.ToggleHandler
+2017-03-23 10:56:44,257 INF                  -                             ElasticServerMain$        /favicon.ico => com.twitter.server.handler.ResourceHandler
+2017-03-23 10:56:44,258 INF                  -                             ElasticServerMain$        /admin/histograms => com.twitter.server.handler.HistogramQueryHandler
+2017-03-23 10:56:44,259 INF                  -                             ElasticServerMain$        /admin/histograms.json => com.twitter.server.handler.HistogramQueryHandler
+2017-03-23 10:56:44,308 INF                  -                             ElasticServerMain$        http server started on port: 8888
+2017-03-23 10:56:44,310 INF                  -                             ElasticServerMain$        Enabling health endpoint on port 9992
+2017-03-23 10:56:44,312 INF                  -                             ElasticServerMain$        api-service started.
+2017-03-23 10:56:44,313 INF                  -                             ElasticServerMain$        Startup complete, server ready.
+2017-03-23 11:15:24,933 INF                  -                             ElasticServerMain$        Process started
+2017-03-23 11:15:30,936 INF                  -                             HikariDataSource          slick.db - Started.
+2017-03-23 11:15:31,034 INF                  -                             ElasticServerMain$        Resolving Finagle clients before warmup
+2017-03-23 11:15:31,452 INF                  -                             ElasticServerMain$        Done resolving clients: [192.168.0.197:6379, api.douban.com:443].
+2017-03-23 11:15:31,454 INF                  -                             FinagleBuildRevision$     Resolved Finagle build revision: (rev=56e7cf55b5174fbb3e481e73984ea62a3a3c63da)
+2017-03-23 11:15:31,796 INF                  -                             ThriftRouter              Adding methods
+ThriftController.increment
+ThriftController.updateBookInfoItem
+ThriftController.insertBookBranch
+ThriftController.findBookBranchById
+ThriftController.findBookBranches
+ThriftController.updateBookBranchById
+ThriftController.deleteBookBranchById
+ThriftController.deleteBookBranchBulk
+ThriftController.insertBookStack
+ThriftController.findBookStackById
+ThriftController.findBookStacks
+ThriftController.updateBookStackById
+ThriftController.deleteBookStackById
+ThriftController.deleteBookStackBulk
+ThriftController.insertReference
+ThriftController.findReferenceById
+ThriftController.findReference
+ThriftController.preGenBookItems
+ThriftController.findBookItemById
+ThriftController.findBookItems
+ThriftController.catalogue
+ThriftController.insertVendorMember
+ThriftController.findVendorMemberById
+ThriftController.findVendorMembers
+ThriftController.updateVendorMemberById
+ThriftController.deleteVendorMemberById
+ThriftController.deleteVendorMemberBulk
+ThriftController.insertVendorOrder
+ThriftController.insertVendorOrderBulk
+ThriftController.findVendorOrderById
+ThriftController.findVendorOrders
+ThriftController.updateVendorOrders
+ThriftController.deleteVendorOrderById
+ThriftController.deleteVendorOrderBulk
+ThriftController.insertReaderLevel
+ThriftController.findReaderLevelById
+ThriftController.findReaderLevels
+ThriftController.updateReaderLevelById
+ThriftController.deleteReaderLevelById
+ThriftController.deleteReaderLevelBulk
+ThriftController.insertReaderGroup
+ThriftController.findReaderGroupById
+ThriftController.findReaderGroups
+ThriftController.updateReaderGroup
+ThriftController.deleteReaderGroupById
+ThriftController.deleteReaderGroupBulk
+ThriftController.insertReaderMember
+ThriftController.insertReaderMemberBulk
+ThriftController.findReaderMemberById
+ThriftController.findReaderMembers
+ThriftController.patchReaderMemberBulk
+ThriftController.patchReaderMemberById
+ThriftController.borrowItems
+ThriftController.renewItems
+ThriftController.findBorrowRecords
+ThriftController.returnBooks
+2017-03-23 11:15:31,882 INF                  -                             ElasticServerMain$        Warming up.
+2017-03-23 11:15:32,459 INF                  -                             ElasticServerMain$        thrift server started on port: 9995
+2017-03-23 11:15:32,465 INF                  -                             HttpRouter                Adding routes
+
+2017-03-23 11:15:32,469 INF                  -                             ElasticServerMain$         => com.twitter.server.handler.AdminRedirectHandler
+2017-03-23 11:15:32,469 INF                  -                             ElasticServerMain$        /admin => com.twitter.server.handler.SummaryHandler
+2017-03-23 11:15:32,469 INF                  -                             ElasticServerMain$        /admin/server_info => com.twitter.finagle.Filter$$anon$1
+2017-03-23 11:15:32,469 INF                  -                             ElasticServerMain$        /admin/contention => com.twitter.finagle.Filter$$anon$1
+2017-03-23 11:15:32,469 INF                  -                             ElasticServerMain$        /admin/lint => com.twitter.server.handler.LintHandler
+2017-03-23 11:15:32,469 INF                  -                             ElasticServerMain$        /admin/lint.json => com.twitter.server.handler.LintHandler
+2017-03-23 11:15:32,469 INF                  -                             ElasticServerMain$        /admin/threads => com.twitter.server.handler.ThreadsHandler
+2017-03-23 11:15:32,469 INF                  -                             ElasticServerMain$        /admin/threads.json => com.twitter.server.handler.ThreadsHandler
+2017-03-23 11:15:32,469 INF                  -                             ElasticServerMain$        /admin/announcer => com.twitter.finagle.Filter$$anon$1
+2017-03-23 11:15:32,469 INF                  -                             ElasticServerMain$        /admin/dtab => com.twitter.finagle.Filter$$anon$1
+2017-03-23 11:15:32,469 INF                  -                             ElasticServerMain$        /admin/pprof/heap => com.twitter.server.handler.HeapResourceHandler
+2017-03-23 11:15:32,469 INF                  -                             ElasticServerMain$        /admin/pprof/profile => com.twitter.server.handler.ProfileResourceHandler
+2017-03-23 11:15:32,469 INF                  -                             ElasticServerMain$        /admin/pprof/contention => com.twitter.server.handler.ProfileResourceHandler
+2017-03-23 11:15:32,469 INF                  -                             ElasticServerMain$        /admin/ping => com.twitter.server.handler.ReplyHandler
+2017-03-23 11:15:32,469 INF                  -                             ElasticServerMain$        /admin/shutdown => com.twitter.server.handler.ShutdownHandler
+2017-03-23 11:15:32,470 INF                  -                             ElasticServerMain$        /admin/tracing => com.twitter.server.handler.TracingHandler
+2017-03-23 11:15:32,470 INF                  -                             ElasticServerMain$        /admin/events => com.twitter.server.handler.EventsHandler
+2017-03-23 11:15:32,470 INF                  -                             ElasticServerMain$        /admin/events/record/ => com.twitter.server.handler.EventRecordingHandler
+2017-03-23 11:15:32,470 INF                  -                             ElasticServerMain$        /admin/logging => com.twitter.server.handler.LoggingHandler
+2017-03-23 11:15:32,470 INF                  -                             ElasticServerMain$        /admin/metrics => com.twitter.server.handler.MetricQueryHandler
+2017-03-23 11:15:32,470 INF                  -                             ElasticServerMain$        /admin/clients/ => com.twitter.server.handler.ClientRegistryHandler
+2017-03-23 11:15:32,470 INF                  -                             ElasticServerMain$        /admin/servers/ => com.twitter.server.handler.ServerRegistryHandler
+2017-03-23 11:15:32,470 INF                  -                             ElasticServerMain$        /admin/files/ => com.twitter.server.handler.ResourceHandler
+2017-03-23 11:15:32,470 INF                  -                             ElasticServerMain$        /admin/registry.json => com.twitter.server.handler.RegistryHandler
+2017-03-23 11:15:32,470 INF                  -                             ElasticServerMain$        /admin/toggles => com.twitter.server.handler.ToggleHandler
+2017-03-23 11:15:32,470 INF                  -                             ElasticServerMain$        /admin/toggles/ => com.twitter.server.handler.ToggleHandler
+2017-03-23 11:15:32,470 INF                  -                             ElasticServerMain$        /favicon.ico => com.twitter.server.handler.ResourceHandler
+2017-03-23 11:15:32,470 INF                  -                             ElasticServerMain$        /admin/histograms => com.twitter.server.handler.HistogramQueryHandler
+2017-03-23 11:15:32,470 INF                  -                             ElasticServerMain$        /admin/histograms.json => com.twitter.server.handler.HistogramQueryHandler
+2017-03-23 11:15:32,492 INF                  -                             ElasticServerMain$        http server started on port: 8888
+2017-03-23 11:15:32,493 INF                  -                             ElasticServerMain$        Enabling health endpoint on port 9992
+2017-03-23 11:15:32,494 INF                  -                             ElasticServerMain$        api-service started.
+2017-03-23 11:15:32,495 INF                  -                             ElasticServerMain$        Startup complete, server ready.
+2017-03-23 11:17:29,091 INF                  -                             ClockedDrainer            Drainer is disabled; bypassing
+2017-03-23 11:18:30,021 WAR                  -                             finagle                   Unhandled exception in connection with /127.0.0.1:19375 , shutting down connection
+java.io.IOException: 远程主机强迫关闭了一个现有的连接。
+	at sun.nio.ch.SocketDispatcher.read0(Native Method) ~[na:1.8.0_121]
+	at sun.nio.ch.SocketDispatcher.read(Unknown Source) ~[na:1.8.0_121]
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(Unknown Source) ~[na:1.8.0_121]
+	at sun.nio.ch.IOUtil.read(Unknown Source) ~[na:1.8.0_121]
+	at sun.nio.ch.SocketChannelImpl.read(Unknown Source) ~[na:1.8.0_121]
+	at org.jboss.netty.channel.socket.nio.NioWorker.read(NioWorker.java:64) [netty-3.10.6.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.process(AbstractNioWorker.java:108) [netty-3.10.6.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioSelector.run(AbstractNioSelector.java:337) [netty-3.10.6.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:89) [netty-3.10.6.Final.jar:na]
+	at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:178) [netty-3.10.6.Final.jar:na]
+	at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:108) [netty-3.10.6.Final.jar:na]
+	at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42) [netty-3.10.6.Final.jar:na]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) [na:1.8.0_121]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) [na:1.8.0_121]
+	at com.twitter.finagle.util.ProxyThreadFactory$$anonfun$newProxiedRunnable$1$$anon$1.run(ProxyThreadFactory.scala:19) [finagle-core_2.11-6.38.0.jar:6.38.0]
+	at java.lang.Thread.run(Unknown Source) [na:1.8.0_121]
+2017-03-23 16:49:42,377 INF                  -                             ElasticServerMain$        Process started
+2017-03-23 16:49:48,765 INF                  -                             HikariDataSource          slick.db - Started.
+2017-03-23 16:49:48,876 INF                  -                             ElasticServerMain$        Resolving Finagle clients before warmup
+2017-03-23 16:49:49,051 INF                  -                             ElasticServerMain$        Done resolving clients: [192.168.0.197:6379, api.douban.com:443].
+2017-03-23 16:49:49,053 INF                  -                             FinagleBuildRevision$     Resolved Finagle build revision: (rev=56e7cf55b5174fbb3e481e73984ea62a3a3c63da)
+2017-03-23 16:49:49,465 INF                  -                             ThriftRouter              Adding methods
+ThriftController.increment
+ThriftController.updateBookInfoItem
+ThriftController.insertBookBranch
+ThriftController.findBookBranchById
+ThriftController.findBookBranches
+ThriftController.updateBookBranchById
+ThriftController.deleteBookBranchById
+ThriftController.deleteBookBranchBulk
+ThriftController.insertBookStack
+ThriftController.findBookStackById
+ThriftController.findBookStacks
+ThriftController.updateBookStackById
+ThriftController.deleteBookStackById
+ThriftController.deleteBookStackBulk
+ThriftController.insertReference
+ThriftController.findReferenceById
+ThriftController.findReference
+ThriftController.preGenBookItems
+ThriftController.findBookItemById
+ThriftController.findBookItems
+ThriftController.catalogue
+ThriftController.insertVendorMember
+ThriftController.findVendorMemberById
+ThriftController.findVendorMembers
+ThriftController.updateVendorMemberById
+ThriftController.deleteVendorMemberById
+ThriftController.deleteVendorMemberBulk
+ThriftController.insertVendorOrder
+ThriftController.insertVendorOrderBulk
+ThriftController.findVendorOrderById
+ThriftController.findVendorOrders
+ThriftController.updateVendorOrders
+ThriftController.deleteVendorOrderById
+ThriftController.deleteVendorOrderBulk
+ThriftController.insertReaderLevel
+ThriftController.findReaderLevelById
+ThriftController.findReaderLevels
+ThriftController.updateReaderLevelById
+ThriftController.deleteReaderLevelById
+ThriftController.deleteReaderLevelBulk
+ThriftController.insertReaderGroup
+ThriftController.findReaderGroupById
+ThriftController.findReaderGroups
+ThriftController.updateReaderGroup
+ThriftController.deleteReaderGroupById
+ThriftController.deleteReaderGroupBulk
+ThriftController.insertReaderMember
+ThriftController.insertReaderMemberBulk
+ThriftController.findReaderMemberById
+ThriftController.findReaderMembers
+ThriftController.patchReaderMemberBulk
+ThriftController.patchReaderMemberById
+ThriftController.borrowItems
+ThriftController.renewItems
+ThriftController.findBorrowRecords
+ThriftController.returnBooks
+2017-03-23 16:49:49,568 INF                  -                             ElasticServerMain$        Warming up.
+2017-03-23 16:49:50,283 INF                  -                             ElasticServerMain$        thrift server started on port: 9995
+2017-03-23 16:49:50,290 INF                  -                             HttpRouter                Adding routes
+
+2017-03-23 16:49:50,294 INF                  -                             ElasticServerMain$         => com.twitter.server.handler.AdminRedirectHandler
+2017-03-23 16:49:50,294 INF                  -                             ElasticServerMain$        /admin => com.twitter.server.handler.SummaryHandler
+2017-03-23 16:49:50,294 INF                  -                             ElasticServerMain$        /admin/server_info => com.twitter.finagle.Filter$$anon$1
+2017-03-23 16:49:50,294 INF                  -                             ElasticServerMain$        /admin/contention => com.twitter.finagle.Filter$$anon$1
+2017-03-23 16:49:50,294 INF                  -                             ElasticServerMain$        /admin/lint => com.twitter.server.handler.LintHandler
+2017-03-23 16:49:50,294 INF                  -                             ElasticServerMain$        /admin/lint.json => com.twitter.server.handler.LintHandler
+2017-03-23 16:49:50,294 INF                  -                             ElasticServerMain$        /admin/threads => com.twitter.server.handler.ThreadsHandler
+2017-03-23 16:49:50,294 INF                  -                             ElasticServerMain$        /admin/threads.json => com.twitter.server.handler.ThreadsHandler
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /admin/announcer => com.twitter.finagle.Filter$$anon$1
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /admin/dtab => com.twitter.finagle.Filter$$anon$1
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /admin/pprof/heap => com.twitter.server.handler.HeapResourceHandler
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /admin/pprof/profile => com.twitter.server.handler.ProfileResourceHandler
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /admin/pprof/contention => com.twitter.server.handler.ProfileResourceHandler
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /admin/ping => com.twitter.server.handler.ReplyHandler
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /admin/shutdown => com.twitter.server.handler.ShutdownHandler
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /admin/tracing => com.twitter.server.handler.TracingHandler
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /admin/events => com.twitter.server.handler.EventsHandler
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /admin/events/record/ => com.twitter.server.handler.EventRecordingHandler
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /admin/logging => com.twitter.server.handler.LoggingHandler
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /admin/metrics => com.twitter.server.handler.MetricQueryHandler
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /admin/clients/ => com.twitter.server.handler.ClientRegistryHandler
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /admin/servers/ => com.twitter.server.handler.ServerRegistryHandler
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /admin/files/ => com.twitter.server.handler.ResourceHandler
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /admin/registry.json => com.twitter.server.handler.RegistryHandler
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /admin/toggles => com.twitter.server.handler.ToggleHandler
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /admin/toggles/ => com.twitter.server.handler.ToggleHandler
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /favicon.ico => com.twitter.server.handler.ResourceHandler
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /admin/histograms => com.twitter.server.handler.HistogramQueryHandler
+2017-03-23 16:49:50,295 INF                  -                             ElasticServerMain$        /admin/histograms.json => com.twitter.server.handler.HistogramQueryHandler
+2017-03-23 16:49:50,320 INF                  -                             ElasticServerMain$        http server started on port: 8888
+2017-03-23 16:49:50,321 INF                  -                             ElasticServerMain$        Enabling health endpoint on port 9992
+2017-03-23 16:49:50,322 INF                  -                             ElasticServerMain$        api-service started.
+2017-03-23 16:49:50,322 INF                  -                             ElasticServerMain$        Startup complete, server ready.
