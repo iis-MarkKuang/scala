@@ -6,8 +6,8 @@ version := "1.0"
 
 val suffix = ""
 
-val libVersion = "latest.integration" + suffix
-val utilVersion = "latest.integration" + suffix
+val libVersion = "6.38.0" + suffix
+val utilVersion = "6.37.0" + suffix
 //val finagleHttpxVersion = "6.27.0"
 val scroogeVersion = "4.15.0" + suffix
 val libThriftVersion = "latest.integration"
