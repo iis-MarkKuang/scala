@@ -2,7 +2,7 @@ package com.shrfid.api.http.Elastic.branch
 
 import javax.inject.Inject
 
-import com.elastic_service.elasticServer.PostBookBranchRequestThrift
+import com.elastic_service.requestStructs.PostBookBranchRequestThrift
 import com.twitter.finatra.conversions.option
 import com.twitter.finatra.request.Header
 import com.twitter.finatra.validation.NotEmpty

@@ -1,12 +1,11 @@
 package com.shrfid.api
 
-import java.io.FileInputStream
 import java.net.InetSocketAddress
 
-import com.twitter.finagle.Thrift
 import com.twitter.conversions.time._
 import com.shrfid.api.modules.{ApiServiceThriftClientIdModule, ServicesModule}
-import com.elastic_service.elasticServer.{ElasticServerThrift$FinagleClient, GetBookStackByIdRequestThrift}
+import com.elastic_service.elasticServer.ElasticServerThrift$FinagleClient
+import com.elastic_service.requestStructs._
 import com.elastic_service.elasticServer._
 import com.twitter.finagle.builder.ClientBuilder
 import com.twitter.finagle.http.filter.Cors
@@ -18,6 +17,8 @@ import com.twitter.finatra.http.filters.{CommonFilters, LoggingMDCFilter, TraceI
 import com.twitter.finatra.http.routing.HttpRouter
 import com.twitter.finatra.thrift.{ThriftClientExceptionMapper, ThriftFilter}
 import com.twitter.finatra.thrift.filters._
+import com.twitter.finagle.Thrift
+import java.io.FileInputStream
 import com.twitter.inject.Logging
 import com.twitter.server.TwitterServer
 import com.twitter.util.{Await, Future}

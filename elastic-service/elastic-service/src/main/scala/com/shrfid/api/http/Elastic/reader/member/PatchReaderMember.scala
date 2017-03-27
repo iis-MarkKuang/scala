@@ -1,6 +1,6 @@
 package com.shrfid.api.http.Elastic.reader.member
 
-import com.elastic_service.elasticServer.PatchReaderMemberByIdRequestThrift
+import com.elastic_service.requestStructs.PatchReaderMemberByIdRequestThrift
 import com.shrfid.api._
 import com.shrfid.api.http.Elastic.BasePatchByIdRequest
 import com.twitter.finatra.request.{Header, QueryParam, RouteParam}

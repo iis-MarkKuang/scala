@@ -11,6 +11,7 @@ import com.shrfid.api.services.ElasticService
 import com.twitter.finatra.thrift.Controller
 import com.elastic_service.elasticServer.ElasticServerThrift._
 import com.elastic_service.elasticServer._
+import com.elastic_service.requestStructs._
 import com.twitter.finatra.http.response.ResponseBuilder
 import com.twitter.util.Future
 import com.shrfid.api.http.Elastic.branch._
@@ -244,7 +245,7 @@ class ThriftController @Inject() (
 
   override val findVendorMembers = handle(FindVendorMembers) { args: FindVendorMembers.Args =>
     elasticService.findVendorMembers(args.user, GetVendorMemberListRequest(
-      args.request._1,
+      args.request.authorization,
       args.request._2,
       args.request._3,
       args.request._4,

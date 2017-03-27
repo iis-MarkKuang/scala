@@ -1,0 +1,267 @@
+2017-03-25 10:43:38,318 INF                  -                             ElasticServerMain$        Process started
+2017-03-25 10:43:44,216 INF                  -                             HikariDataSource          slick.db - Started.
+2017-03-25 10:43:44,341 INF                  -                             ElasticServerMain$        Resolving Finagle clients before warmup
+2017-03-25 10:43:44,347 INF                  -                             ElasticServerMain$        Done resolving clients: [192.168.0.197:6379, api.douban.com:443].
+2017-03-25 10:43:44,349 INF                  -                             FinagleBuildRevision$     Resolved Finagle build revision: (rev=56e7cf55b5174fbb3e481e73984ea62a3a3c63da)
+2017-03-25 10:43:44,827 INF                  -                             ThriftRouter              Adding methods
+ThriftController.increment
+ThriftController.updateBookInfoItem
+ThriftController.insertBookBranch
+ThriftController.findBookBranchById
+ThriftController.findBookBranches
+ThriftController.updateBookBranchById
+ThriftController.deleteBookBranchById
+ThriftController.deleteBookBranchBulk
+ThriftController.insertBookStack
+ThriftController.findBookStackById
+ThriftController.findBookStacks
+ThriftController.updateBookStackById
+ThriftController.deleteBookStackById
+ThriftController.deleteBookStackBulk
+ThriftController.insertReference
+ThriftController.findReferenceById
+ThriftController.findReference
+ThriftController.preGenBookItems
+ThriftController.findBookItemById
+ThriftController.findBookItems
+ThriftController.catalogue
+ThriftController.insertVendorMember
+ThriftController.findVendorMemberById
+ThriftController.findVendorMembers
+ThriftController.updateVendorMemberById
+ThriftController.deleteVendorMemberById
+ThriftController.deleteVendorMemberBulk
+ThriftController.insertVendorOrder
+ThriftController.insertVendorOrderBulk
+ThriftController.findVendorOrderById
+ThriftController.findVendorOrders
+ThriftController.updateVendorOrders
+ThriftController.deleteVendorOrderById
+ThriftController.deleteVendorOrderBulk
+ThriftController.insertReaderLevel
+ThriftController.findReaderLevelById
+ThriftController.findReaderLevels
+ThriftController.updateReaderLevelById
+ThriftController.deleteReaderLevelById
+ThriftController.deleteReaderLevelBulk
+ThriftController.insertReaderGroup
+ThriftController.findReaderGroupById
+ThriftController.findReaderGroups
+ThriftController.updateReaderGroup
+ThriftController.deleteReaderGroupById
+ThriftController.deleteReaderGroupBulk
+ThriftController.insertReaderMember
+ThriftController.insertReaderMemberBulk
+ThriftController.findReaderMemberById
+ThriftController.findReaderMembers
+ThriftController.patchReaderMemberBulk
+ThriftController.patchReaderMemberById
+ThriftController.borrowItems
+ThriftController.renewItems
+ThriftController.findBorrowRecords
+ThriftController.returnBooks
+2017-03-25 10:43:44,937 INF                  -                             ElasticServerMain$        Warming up.
+2017-03-25 10:43:45,611 INF                  -                             ElasticServerMain$        thrift server started on port: 9995
+2017-03-25 10:43:45,619 INF                  -                             HttpRouter                Adding routes
+
+2017-03-25 10:43:45,623 INF                  -                             ElasticServerMain$         => com.twitter.server.handler.AdminRedirectHandler
+2017-03-25 10:43:45,623 INF                  -                             ElasticServerMain$        /admin => com.twitter.server.handler.SummaryHandler
+2017-03-25 10:43:45,623 INF                  -                             ElasticServerMain$        /admin/server_info => com.twitter.finagle.Filter$$anon$1
+2017-03-25 10:43:45,623 INF                  -                             ElasticServerMain$        /admin/contention => com.twitter.finagle.Filter$$anon$1
+2017-03-25 10:43:45,623 INF                  -                             ElasticServerMain$        /admin/lint => com.twitter.server.handler.LintHandler
+2017-03-25 10:43:45,623 INF                  -                             ElasticServerMain$        /admin/lint.json => com.twitter.server.handler.LintHandler
+2017-03-25 10:43:45,623 INF                  -                             ElasticServerMain$        /admin/threads => com.twitter.server.handler.ThreadsHandler
+2017-03-25 10:43:45,623 INF                  -                             ElasticServerMain$        /admin/threads.json => com.twitter.server.handler.ThreadsHandler
+2017-03-25 10:43:45,623 INF                  -                             ElasticServerMain$        /admin/announcer => com.twitter.finagle.Filter$$anon$1
+2017-03-25 10:43:45,623 INF                  -                             ElasticServerMain$        /admin/dtab => com.twitter.finagle.Filter$$anon$1
+2017-03-25 10:43:45,623 INF                  -                             ElasticServerMain$        /admin/pprof/heap => com.twitter.server.handler.HeapResourceHandler
+2017-03-25 10:43:45,623 INF                  -                             ElasticServerMain$        /admin/pprof/profile => com.twitter.server.handler.ProfileResourceHandler
+2017-03-25 10:43:45,623 INF                  -                             ElasticServerMain$        /admin/pprof/contention => com.twitter.server.handler.ProfileResourceHandler
+2017-03-25 10:43:45,624 INF                  -                             ElasticServerMain$        /admin/ping => com.twitter.server.handler.ReplyHandler
+2017-03-25 10:43:45,624 INF                  -                             ElasticServerMain$        /admin/shutdown => com.twitter.server.handler.ShutdownHandler
+2017-03-25 10:43:45,624 INF                  -                             ElasticServerMain$        /admin/tracing => com.twitter.server.handler.TracingHandler
+2017-03-25 10:43:45,624 INF                  -                             ElasticServerMain$        /admin/events => com.twitter.server.handler.EventsHandler
+2017-03-25 10:43:45,624 INF                  -                             ElasticServerMain$        /admin/events/record/ => com.twitter.server.handler.EventRecordingHandler
+2017-03-25 10:43:45,624 INF                  -                             ElasticServerMain$        /admin/logging => com.twitter.server.handler.LoggingHandler
+2017-03-25 10:43:45,624 INF                  -                             ElasticServerMain$        /admin/metrics => com.twitter.server.handler.MetricQueryHandler
+2017-03-25 10:43:45,624 INF                  -                             ElasticServerMain$        /admin/clients/ => com.twitter.server.handler.ClientRegistryHandler
+2017-03-25 10:43:45,624 INF                  -                             ElasticServerMain$        /admin/servers/ => com.twitter.server.handler.ServerRegistryHandler
+2017-03-25 10:43:45,624 INF                  -                             ElasticServerMain$        /admin/files/ => com.twitter.server.handler.ResourceHandler
+2017-03-25 10:43:45,624 INF                  -                             ElasticServerMain$        /admin/registry.json => com.twitter.server.handler.RegistryHandler
+2017-03-25 10:43:45,624 INF                  -                             ElasticServerMain$        /admin/toggles => com.twitter.server.handler.ToggleHandler
+2017-03-25 10:43:45,624 INF                  -                             ElasticServerMain$        /admin/toggles/ => com.twitter.server.handler.ToggleHandler
+2017-03-25 10:43:45,624 INF                  -                             ElasticServerMain$        /favicon.ico => com.twitter.server.handler.ResourceHandler
+2017-03-25 10:43:45,625 INF                  -                             ElasticServerMain$        /admin/histograms => com.twitter.server.handler.HistogramQueryHandler
+2017-03-25 10:43:45,625 INF                  -                             ElasticServerMain$        /admin/histograms.json => com.twitter.server.handler.HistogramQueryHandler
+2017-03-25 10:43:45,649 INF                  -                             ElasticServerMain$        http server started on port: 8888
+2017-03-25 10:43:45,650 INF                  -                             ElasticServerMain$        Enabling health endpoint on port 9992
+2017-03-25 10:43:45,651 INF                  -                             ElasticServerMain$        api-service started.
+2017-03-25 10:43:45,651 INF                  -                             ElasticServerMain$        Startup complete, server ready.
+2017-03-25 10:43:49,304 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:43:49,305 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:43:49,306 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:43:54,316 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:43:54,317 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:43:54,318 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:43:59,322 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:43:59,322 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:43:59,322 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:44:04,346 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:44:04,346 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:44:04,347 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:44:09,353 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:44:09,353 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:44:09,353 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:44:14,362 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:44:14,362 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:44:14,362 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:44:19,374 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:44:19,375 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:44:19,376 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:44:24,382 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:44:24,382 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:44:24,382 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:44:29,392 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:44:29,393 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:44:29,393 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:44:34,404 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:44:34,406 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:44:34,406 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:44:39,413 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:44:39,414 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:44:39,415 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:44:44,423 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:44:44,424 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:44:44,424 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:44:49,433 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:44:49,433 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:44:49,433 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:44:54,443 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:44:54,443 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:44:54,443 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:44:59,452 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:44:59,453 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:44:59,453 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:45:04,463 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:45:04,464 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:45:04,464 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:45:09,473 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:45:09,473 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:45:09,473 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:45:14,485 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:45:14,486 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:45:14,486 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:45:19,492 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:45:19,492 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:45:19,492 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:45:24,502 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:45:24,502 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:45:24,503 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:45:29,512 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:45:29,512 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:45:29,512 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:45:34,524 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:45:34,525 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:45:34,525 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 10:45:39,533 INF                  -                             DnsResolver               Failed to resolve api.douban.com. Error java.net.UnknownHostException: api.douban.com
+2017-03-25 10:45:39,533 INF                  -                             InetResolver              Resolution failed for all hosts in ArraySeq((api.douban.com,443,Map()))
+2017-03-25 10:45:39,534 INF                  -                             finagle                   api.douban.com:443: name resolution is negative (local dtab: Dtab())
+2017-03-25 20:56:09,648 INF                  -                             ElasticServerMain$        Process started
+2017-03-25 20:56:16,789 INF                  -                             HikariDataSource          slick.db - Started.
+2017-03-25 20:56:16,908 INF                  -                             ElasticServerMain$        Resolving Finagle clients before warmup
+2017-03-25 20:56:18,103 INF                  -                             ElasticServerMain$        Done resolving clients: [192.168.0.197:6379, api.douban.com:443].
+2017-03-25 20:56:18,103 INF                  -                             FinagleBuildRevision$     Resolved Finagle build revision: (rev=56e7cf55b5174fbb3e481e73984ea62a3a3c63da)
+2017-03-25 20:56:18,537 INF                  -                             ThriftRouter              Adding methods
+ThriftController.increment
+ThriftController.updateBookInfoItem
+ThriftController.insertBookBranch
+ThriftController.findBookBranchById
+ThriftController.findBookBranches
+ThriftController.updateBookBranchById
+ThriftController.deleteBookBranchById
+ThriftController.deleteBookBranchBulk
+ThriftController.insertBookStack
+ThriftController.findBookStackById
+ThriftController.findBookStacks
+ThriftController.updateBookStackById
+ThriftController.deleteBookStackById
+ThriftController.deleteBookStackBulk
+ThriftController.insertReference
+ThriftController.findReferenceById
+ThriftController.findReference
+ThriftController.preGenBookItems
+ThriftController.findBookItemById
+ThriftController.findBookItems
+ThriftController.catalogue
+ThriftController.insertVendorMember
+ThriftController.findVendorMemberById
+ThriftController.findVendorMembers
+ThriftController.updateVendorMemberById
+ThriftController.deleteVendorMemberById
+ThriftController.deleteVendorMemberBulk
+ThriftController.insertVendorOrder
+ThriftController.insertVendorOrderBulk
+ThriftController.findVendorOrderById
+ThriftController.findVendorOrders
+ThriftController.updateVendorOrders
+ThriftController.deleteVendorOrderById
+ThriftController.deleteVendorOrderBulk
+ThriftController.insertReaderLevel
+ThriftController.findReaderLevelById
+ThriftController.findReaderLevels
+ThriftController.updateReaderLevelById
+ThriftController.deleteReaderLevelById
+ThriftController.deleteReaderLevelBulk
+ThriftController.insertReaderGroup
+ThriftController.findReaderGroupById
+ThriftController.findReaderGroups
+ThriftController.updateReaderGroup
+ThriftController.deleteReaderGroupById
+ThriftController.deleteReaderGroupBulk
+ThriftController.insertReaderMember
+ThriftController.insertReaderMemberBulk
+ThriftController.findReaderMemberById
+ThriftController.findReaderMembers
+ThriftController.patchReaderMemberBulk
+ThriftController.patchReaderMemberById
+ThriftController.borrowItems
+ThriftController.renewItems
+ThriftController.findBorrowRecords
+ThriftController.returnBooks
+2017-03-25 20:56:18,634 INF                  -                             ElasticServerMain$        Warming up.
+2017-03-25 20:56:19,434 INF                  -                             ElasticServerMain$        thrift server started on port: 9995
+2017-03-25 20:56:19,442 INF                  -                             HttpRouter                Adding routes
+
+2017-03-25 20:56:19,447 INF                  -                             ElasticServerMain$         => com.twitter.server.handler.AdminRedirectHandler
+2017-03-25 20:56:19,447 INF                  -                             ElasticServerMain$        /admin => com.twitter.server.handler.SummaryHandler
+2017-03-25 20:56:19,448 INF                  -                             ElasticServerMain$        /admin/server_info => com.twitter.finagle.Filter$$anon$1
+2017-03-25 20:56:19,448 INF                  -                             ElasticServerMain$        /admin/contention => com.twitter.finagle.Filter$$anon$1
+2017-03-25 20:56:19,448 INF                  -                             ElasticServerMain$        /admin/lint => com.twitter.server.handler.LintHandler
+2017-03-25 20:56:19,448 INF                  -                             ElasticServerMain$        /admin/lint.json => com.twitter.server.handler.LintHandler
+2017-03-25 20:56:19,448 INF                  -                             ElasticServerMain$        /admin/threads => com.twitter.server.handler.ThreadsHandler
+2017-03-25 20:56:19,448 INF                  -                             ElasticServerMain$        /admin/threads.json => com.twitter.server.handler.ThreadsHandler
+2017-03-25 20:56:19,448 INF                  -                             ElasticServerMain$        /admin/announcer => com.twitter.finagle.Filter$$anon$1
+2017-03-25 20:56:19,448 INF                  -                             ElasticServerMain$        /admin/dtab => com.twitter.finagle.Filter$$anon$1
+2017-03-25 20:56:19,448 INF                  -                             ElasticServerMain$        /admin/pprof/heap => com.twitter.server.handler.HeapResourceHandler
+2017-03-25 20:56:19,448 INF                  -                             ElasticServerMain$        /admin/pprof/profile => com.twitter.server.handler.ProfileResourceHandler
+2017-03-25 20:56:19,448 INF                  -                             ElasticServerMain$        /admin/pprof/contention => com.twitter.server.handler.ProfileResourceHandler
+2017-03-25 20:56:19,448 INF                  -                             ElasticServerMain$        /admin/ping => com.twitter.server.handler.ReplyHandler
+2017-03-25 20:56:19,448 INF                  -                             ElasticServerMain$        /admin/shutdown => com.twitter.server.handler.ShutdownHandler
+2017-03-25 20:56:19,448 INF                  -                             ElasticServerMain$        /admin/tracing => com.twitter.server.handler.TracingHandler
+2017-03-25 20:56:19,449 INF                  -                             ElasticServerMain$        /admin/events => com.twitter.server.handler.EventsHandler
+2017-03-25 20:56:19,449 INF                  -                             ElasticServerMain$        /admin/events/record/ => com.twitter.server.handler.EventRecordingHandler
+2017-03-25 20:56:19,449 INF                  -                             ElasticServerMain$        /admin/logging => com.twitter.server.handler.LoggingHandler
+2017-03-25 20:56:19,449 INF                  -                             ElasticServerMain$        /admin/metrics => com.twitter.server.handler.MetricQueryHandler
+2017-03-25 20:56:19,449 INF                  -                             ElasticServerMain$        /admin/clients/ => com.twitter.server.handler.ClientRegistryHandler
+2017-03-25 20:56:19,449 INF                  -                             ElasticServerMain$        /admin/servers/ => com.twitter.server.handler.ServerRegistryHandler
+2017-03-25 20:56:19,449 INF                  -                             ElasticServerMain$        /admin/files/ => com.twitter.server.handler.ResourceHandler
+2017-03-25 20:56:19,449 INF                  -                             ElasticServerMain$        /admin/registry.json => com.twitter.server.handler.RegistryHandler
+2017-03-25 20:56:19,449 INF                  -                             ElasticServerMain$        /admin/toggles => com.twitter.server.handler.ToggleHandler
+2017-03-25 20:56:19,449 INF                  -                             ElasticServerMain$        /admin/toggles/ => com.twitter.server.handler.ToggleHandler
+2017-03-25 20:56:19,449 INF                  -                             ElasticServerMain$        /favicon.ico => com.twitter.server.handler.ResourceHandler
+2017-03-25 20:56:19,449 INF                  -                             ElasticServerMain$        /admin/histograms => com.twitter.server.handler.HistogramQueryHandler
+2017-03-25 20:56:19,449 INF                  -                             ElasticServerMain$        /admin/histograms.json => com.twitter.server.handler.HistogramQueryHandler
+2017-03-25 20:56:19,473 INF                  -                             ElasticServerMain$        http server started on port: 8888
+2017-03-25 20:56:19,474 INF                  -                             ElasticServerMain$        Enabling health endpoint on port 9992
+2017-03-25 20:56:19,475 INF                  -                             ElasticServerMain$        api-service started.
+2017-03-25 20:56:19,476 INF                  -                             ElasticServerMain$        Startup complete, server ready.
