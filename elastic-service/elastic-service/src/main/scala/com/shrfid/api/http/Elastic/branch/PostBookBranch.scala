@@ -15,7 +15,7 @@ import play.api.libs.json.Json
 object PostBookBranchRequest {
   implicit val fmt = Json.format[PostBookBranchRequest]
 
-  def toDomain(requestThrift: PostBookBranchRequestThrift): PostBookBranchRequest = {
+  def wrap(requestThrift: PostBookBranchRequestThrift): PostBookBranchRequest = {
     PostBookBranchRequest(
       requestThrift.authorization,
       requestThrift.name,

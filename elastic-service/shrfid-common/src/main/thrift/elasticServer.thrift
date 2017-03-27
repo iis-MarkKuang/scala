@@ -8,7 +8,7 @@ service ElasticServerThrift {
   /**
    * Increment a number\
    **/
-  i32 increment(
+  string increment(
     1: i32 a
   ) throws (
     1: finatra_thrift_exceptions.ServerError serverError,
@@ -108,7 +108,7 @@ service ElasticServerThrift {
     2: requestStructs.GetBookItemListRequestThrift request
   )
 
-  string catalogue(
+  string insertBookItem(
     1: requestStructs.Username user,
     2: requestStructs.PostBookItemRequestThrift request
   )
@@ -289,5 +289,15 @@ service ElasticServerThrift {
   string returnBooks(
     1: requestStructs.Username user,
     2: requestStructs.PostBookItemsReturnRequestThrift request
+  )
+
+  string reserveBooks(
+    1: requestStructs.Username user,
+    2: requestStructs.PostReaderMemberReserveBooksRequestThrift request
+  )
+
+  string reserveBook(
+    1: requestStructs.Username user,
+    2: requestStructs.PostReaderMemberReserveBookRequestThrift request
   )
 }

@@ -550,3 +550,18 @@ struct PostReaderMemberRenewItemsRequestThrift {
     3: list<string> bookBarcodes;
     4: string location
 }
+
+struct PostReaderMemberReserveBooksRequestThrift {
+    1: required string Authorization;
+    2: required string Id;
+    3: required list<string> bookBarcodes;
+    4: string location
+}
+
+struct PostReaderMemberReserveBookRequestThrift {
+    1: required string Authorization;
+    2: required string Id;
+    3: required string bookBarcode;
+    4: string location
+}
+

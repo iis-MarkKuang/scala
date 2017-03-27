@@ -2,6 +2,7 @@ package com.shrfid.api.services.impl
 
 import javax.inject.{Inject, Singleton}
 
+import com.elastic_service.requestStructs.UpsertResponseThrift
 import com.shrfid.api.TwitterFutureOps._
 import com.shrfid.api._
 import com.shrfid.api.domains.book._
@@ -209,7 +210,7 @@ class ElasticServiceImpl @Inject()(bookBranchRepo: BookBranchRepo,
     }
     val clcFixed = clc match {
       case Some(c) => c.take(Config.clcLength)
-      case None => request.info.get.中国图书馆图书分类法分类号//.take(Config.clcLength).replaceAll("[^a-zA-Z0-9]", "")
+      case None => request.info.get.中国图书馆图书分类法分类号 //.take(Config.clcLength).replaceAll("[^a-zA-Z0-9]", "")
     }
 
     for {
@@ -228,6 +229,7 @@ class ElasticServiceImpl @Inject()(bookBranchRepo: BookBranchRepo,
         val _id = bookRef.id
         insertReference(_id, Json.stringify(Json.toJson(bookRef))).map(e => (_id, None, None))
     }
+
     for {
       (ref, title, clc) <- findRefTitleClc
       result <- catalogue(request, ref, title, clc, user)
@@ -543,6 +545,8 @@ class ElasticServiceImpl @Inject()(bookBranchRepo: BookBranchRepo,
   def renewBookResponse(id: String, result: String, renewed: Boolean, status: Int = 200) =
     (status, s"""{"id": "$id",  "result": "$result" , "renewed" : $renewed}""")
 
+  def reserveBookResponse(id: String, result: String, reserved: Boolean, status: Int = 200) =
+    (status, s"""{"id": "$id",  "result": "$result" , "reserved" : $reserved}""")
 
   // borrow
   override def borrowItems(user: Username, request: PostReaderMemberBorrowItemsRequest): Future[(StatusCode, Docs)] = {
@@ -586,7 +590,7 @@ class ElasticServiceImpl @Inject()(bookBranchRepo: BookBranchRepo,
             Future.value(borrowBookResponse("", "非流通图书, 请将其归还至管理员处, 谢谢!", false))
           case (true, true) => for {
             _ <- bookItemRepo.dal.updateAvailability(barcode, false)
-            borrowHistory = BorrowHistory.toDomain("borrow",readerMember.toReaderInfo(id),bookItem, TimeLocation(Time.now.toString, location), None, None, day)
+            borrowHistory = BorrowHistory.toDomain("borrow", readerMember.toReaderInfo(id), bookItem, TimeLocation(Time.now.toString, location), None, None, day)
             result <- borrowHistoryRepo.dal.insertDocReturnId(borrowHistory.jsonStringify)
           } yield result match {
             case (Status.Created.code, s, id) =>
@@ -641,7 +645,7 @@ class ElasticServiceImpl @Inject()(bookBranchRepo: BookBranchRepo,
             Future.value(renewBookResponse("", s"图书${b}无法续借, 已续借过此图书或已被归还", false))
           case Some(bhId) =>
             val dueAt = Time.nextNdays(days).toString
-            for {result <- borrowHistoryRepo.dal.renewAt(bhId, TimeLocation(now,location), dueAt, now)} yield result._1 match {
+            for {result <- borrowHistoryRepo.dal.renewAt(bhId, TimeLocation(now, location), dueAt, now)} yield result._1 match {
               case 200 => renewBookResponse(bhId, s"成功续借, 应还时间为${dueAt}", true)
               case _ => renewBookResponse("", "内部错误, 请联系管理员", false)
             }
@@ -666,7 +670,7 @@ class ElasticServiceImpl @Inject()(bookBranchRepo: BookBranchRepo,
       result <- history.ids.headOption match {
         case None => Future.value(returnBookResponse("", "图书非在借状态, 无法归还", false))
         case Some(id) => for {
-          ret <- borrowHistoryRepo.dal.returnAt(id,TimeLocation(now, location), now)
+          ret <- borrowHistoryRepo.dal.returnAt(id, TimeLocation(now, location), now)
           ava <- bookItemRepo.dal.updateAvailability(b, true, now)
         } yield (ret._1, ava._1) match {
           case (200, 200) => returnBookResponse(id, s"成功归还, 归还时间为${now}", true)
@@ -677,4 +681,38 @@ class ElasticServiceImpl @Inject()(bookBranchRepo: BookBranchRepo,
     )).map(a => (200, "[" + a.map(_._2).mkString(",") + "]"))
   }
 
+  // reserve
+  override def reserveBooks(user: Username, request: PostReaderMemberReserveItemsRequest): Future[(UpsertResponse)] = {
+    _reserveBulk(user, request.bookBarcodes, request.location)
+  }
+
+  override def reserveBook(user: Username, request: PostReaderMemberReserveItemRequest): Future[(UpsertResponse)] = {
+    _reserve(user, request.bookBarcode, request.location)
+  }
+
+  private def _reserve(user: Username, bookBarcode: String, location: String) = {
+    Future((200, "success"))
+  }
+
+  private def _reserveBulk(user: Username, bookBarcodes: Seq[String], location: String) = {
+    Future.collect(bookBarcodes.map(b => for {
+      history <- borrowHistoryRepo.dal.findAll(_m = Seq(matchPhraseQuery("book.barcode", b)), _n = Seq(existsQuery("_return")))
+      now = Time.now.toString
+
+      result <- history.ids.headOption match {
+        case None =>
+
+//        case None => Future.value(reserveBookResponse("", s"图书在馆，请直接到馆借书", true))
+        case Some(id) => for {
+//          availability <- bookItemRepo.dal.findAll(_m = Seq(matchPhraseQuery("_id", id)), _n = Seq())
+          res <- borrowHistoryRepo.dal.reserveAt(id,TimeLocation(now, location), Time.nextNdays(7).toString, Time.now.toString)
+          ava <- bookItemRepo.dal.updateAvailability(b, false, now)
+        } yield (res._1, ava._1) match {
+          case (200, 200) => reserveBookResponse(id, s"成功预约，您将在该书可以借阅时收到通知", true)
+          case (_, _) => reserveBookResponse("", "内部错误，请联系管理员", false)
+        }
+      }
+    } yield result
+    )).map(a => (200, "[" + a.map(_._2).mkString(",") + "]"))
+  }
 }

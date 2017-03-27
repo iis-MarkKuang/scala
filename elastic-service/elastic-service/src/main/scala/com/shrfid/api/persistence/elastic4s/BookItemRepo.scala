@@ -32,45 +32,61 @@ class BookItemRepo @Inject()(db: Elastic4SDatabaseSource) {
 
     def findNextBookIndex(clc: String) = {
       db.execute(
-        search(_index / _type) termQuery("clc.keyword", clc) fetchSource (false) aggregations (
-          maxAggregation("book_index").field("book_index")
-          )
+      search(_index / _type) termQuery("clc.keyword", clc) fetchSource (false) aggregations (
+      maxAggregation("book_index").field("book_index")
+      )
       ).toTwitterFuture.map(a => a.aggregations.maxResult("book_index").value() match {
         case a if a.isInfinity => 1
         case b => b.toInt
       })
     }
 
-    def findMaxBarcode(category: String): Future[String] = {
-
+    def isAvailable(_id: String): Boolean = {
       db.execute(indexExists("book")).toTwitterFuture.flatMap {
         case a => a.isExists match {
           case true =>
             db.execute(
-              search(_index / _type) termQuery("category.keyword", category) sortBy (Iterable(fieldSort("barcode") order SortOrder.DESC)) limit 1
-            ).toTwitterFuture.map(a =>
-              a.hits.headOption match {
+              search(_index / _type) termQuery("_id", _id) termQuery("is_available", "true") limit 1
+        ).toTwitterFuture.map(a =>
+            a.hits.headOption match {
+              case None => false
+              case Some(s) => println(s.sourceAsMap("_id")); println(s.sourceAsMap("is_available"))
+                true
+              }
+        )
+        }
+      }
+    }
+
+    def findMaxBarcode(category: String): Future[String] = {
+      db.execute(indexExists("book")).toTwitterFuture.flatMap {
+        case a => a.isExists match {
+          case true =>
+            db.execute(
+            search(_index / _type) termQuery("category.keyword", category) sortBy (Iterable(fieldSort("barcode") order SortOrder.DESC)) limit 1
+        ).toTwitterFuture.map(a =>
+            a.hits.headOption match {
                 case None => barcodeFmt(0, bookCategoryId(category))
                 case Some(s) => println(s.sourceAsMap("barcode")); s.sourceAsMap("barcode").toString
               }
-            )
+        )
           case false => Future.value(barcodeFmt(0, bookCategoryId(category)))
         }
       }
     }
 
     def catalogue(_id: String, rfid: String, reference: String, title: String, stackId: String,
-                  clc: String, bookIndex: Int, user: Username): Future[UpsertResponse] = {
+    clc: String, bookIndex: Int, user: Username): Future[UpsertResponse] = {
       db.execute(
-        update(_id).in(_index / _type).docAsUpsert(
-          "rfid" -> rfid,
-          "reference" -> reference,
-          "title" -> title,
-          "stack" -> stackId,
-          "clc" -> clc,
-          "book_index" -> bookIndex,
-          "datetime" -> Time.now.toString,
-          "user" -> user)
+      update(_id).in(_index / _type).docAsUpsert(
+      "rfid" -> rfid,
+      "reference" -> reference,
+      "title" -> title,
+      "stack" -> stackId,
+      "clc" -> clc,
+      "book_index" -> bookIndex,
+      "datetime" -> Time.now.toString,
+      "user" -> user)
       ).toTwitterFuture.map(a => (a.status.getStatus, updateJsonRepsonse(a)))
     }
 
@@ -80,7 +96,7 @@ class BookItemRepo @Inject()(db: Elastic4SDatabaseSource) {
 
     def insert( _id: String, item: String) = {
       db.execute(
-        update(_id) in (_index / _type) script {
+      update(_id) in (_index / _type) script {
           script(s"""if (ctx._source.containsKey(params.field)) {params.value.removeAll(ctx._source.items);ctx._source.items.addAll(params.value)} else { ctx._source.items=params.value;}""")
             .lang("painless").params(Map("field" -> "items", "value" -> seqAsJavaList(Seq(item))))
         }
@@ -94,5 +110,6 @@ class BookItemRepo @Inject()(db: Elastic4SDatabaseSource) {
         }
       })
     }
+
   }
 }

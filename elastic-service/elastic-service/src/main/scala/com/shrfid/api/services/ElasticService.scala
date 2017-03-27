@@ -177,4 +177,7 @@ trait ElasticService {
   // return
   def returnBooks(user: Username, request: PostBookItemsReturnRequest): Future[(StatusCode, Docs)]
 
+  // reserve
+  def reserveBooks(user: Username, request: PostReaderMemberReserveItemsRequest): Future[UpsertResponse]
+  def reserveBook(user: Username, request: PostReaderMemberReserveItemRequest): Future[UpsertResponse]
 }
