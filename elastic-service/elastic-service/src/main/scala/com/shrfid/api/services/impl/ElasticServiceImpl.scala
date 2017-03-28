@@ -4,7 +4,7 @@ import javax.inject.{Inject, Singleton}
 
 import com.shrfid.api.TwitterFutureOps._
 import com.shrfid.api._
-import com.shrfid.api.domains.book._
+import com.shrfid.api.domains.readable._
 import com.shrfid.api.domains.reader.{ReaderGroup, ReaderLevel, ReaderMember, ReaderMemberIsSuspend}
 import com.shrfid.api.domains.vendor.{VendorMember, VendorMemberWithId, VendorOrder, VendorOrderNested}
 import com.shrfid.api.http.Elastic.book.item._

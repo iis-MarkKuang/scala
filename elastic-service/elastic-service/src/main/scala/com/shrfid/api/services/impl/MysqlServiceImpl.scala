@@ -7,7 +7,7 @@ import com.shrfid.api._
 import com.shrfid.api.domains.auth.{AuthGroup, AuthGroupNested, IdUpdating}
 import com.shrfid.api.domains.reader._
 import com.shrfid.api.persistence.slick.auth.{AuthGroupPermissionRepository, _}
-import com.shrfid.api.persistence.slick.book._
+import com.shrfid.api.persistence.slick.readable._
 import com.shrfid.api.persistence.slick.reader._
 import com.shrfid.api.persistence.slick.vendor.{VendorMemberRepository, VendorOrderRepository}
 import com.shrfid.api.services.MysqlService

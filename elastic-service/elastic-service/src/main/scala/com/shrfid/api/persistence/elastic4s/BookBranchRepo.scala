@@ -3,7 +3,7 @@ package com.shrfid.api.persistence.elastic4s
 import javax.inject.{Inject, Singleton}
 
 import com.shrfid.api._
-import com.shrfid.api.domains.book.BookBranch
+import com.shrfid.api.domains.readable.BookBranch
 import com.shrfid.api.modules.Elastic4SModule._
 import com.twitter.util.Future
 

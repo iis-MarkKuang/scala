@@ -5,7 +5,7 @@ import javax.inject.Inject
 import com.github.tototoshi.slick.MySQLJodaSupport._
 import com.google.inject.Singleton
 import com.shrfid.api.modules.SlickDatabaseModule.SlickDatabaseSource
-import com.shrfid.api.persistence.slick.book.BookItemTable
+import com.shrfid.api.persistence.slick.readable.BookItemTable
 import com.shrfid.api.persistence.slick.{BaseDalImpl, BaseEntity, BaseTable}
 import org.joda.time.DateTime
 import slick.driver.MySQLDriver.api._

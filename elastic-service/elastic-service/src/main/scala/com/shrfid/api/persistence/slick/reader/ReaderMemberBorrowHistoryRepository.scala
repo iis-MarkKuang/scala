@@ -7,7 +7,7 @@ import com.google.inject.Singleton
 import com.shrfid.api.TwitterFutureOps._
 import com.shrfid.api.domains.reader.ReaderMemberBorrowRecord
 import com.shrfid.api.modules.SlickDatabaseModule.SlickDatabaseSource
-import com.shrfid.api.persistence.slick.book.BookItemTable
+import com.shrfid.api.persistence.slick.readable.BookItemTable
 import com.shrfid.api.persistence.slick.{BaseDalImpl, BaseEntity, BaseTable}
 import com.twitter.util.Future
 import org.joda.time.{DateTime, DateTimeZone}

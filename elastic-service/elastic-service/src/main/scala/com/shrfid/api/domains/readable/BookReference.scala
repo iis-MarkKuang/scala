@@ -1,4 +1,4 @@
-package com.shrfid.api.domains.book
+package com.shrfid.api.domains.readable
 
 import com.shrfid.api._
 import com.shrfid.api.persistence.elastic4s.BaseDoc

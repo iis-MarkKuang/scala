@@ -4,7 +4,7 @@ import javax.inject.{Inject, Singleton}
 
 import com.shrfid.api.TwitterFutureOps._
 import com.shrfid.api._
-import com.shrfid.api.domains.book.BookReserve
+import com.shrfid.api.domains.readable.BookReserve
 import com.shrfid.api.modules.Elastic4SModule._
 import com.sksamuel.elastic4s.ElasticDsl._
 import com.twitter.util.Future

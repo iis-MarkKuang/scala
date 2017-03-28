@@ -1,6 +1,6 @@
 package com.shrfid.api.domains.reader
 
-import com.shrfid.api.persistence.slick.book.BookItemEntity
+import com.shrfid.api.persistence.slick.readable.BookItemEntity
 import org.joda.time.DateTime
 
 /**

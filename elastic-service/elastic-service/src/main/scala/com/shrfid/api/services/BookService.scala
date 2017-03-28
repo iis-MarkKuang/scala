@@ -3,7 +3,7 @@ package com.shrfid.api.services
 import com.shrfid.api.http.Elastic.book.item.{GetBookItemByIdRequest, GetBookItemListRequest, PostBookItemRequest, PostPreGenBookItemsRequest}
 import com.elastic_service.elasticServer.ElasticServerThrift._
 import com.google.inject.{Inject, Singleton}
-import com.shrfid.api.domains.book.BookReference
+import com.shrfid.api.domains.readable.BookReference
 import com.shrfid.api.http.Elastic.book.reference.GetBookReferenceListRequest
 import com.twitter.util.Future
 /**

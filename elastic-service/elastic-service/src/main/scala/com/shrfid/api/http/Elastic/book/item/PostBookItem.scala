@@ -1,6 +1,6 @@
 package com.shrfid.api.http.Elastic.book.item
 
-import com.shrfid.api.domains.book.BookReference
+import com.shrfid.api.domains.readable.BookReference
 import com.twitter.finatra.request.Header
 import com.twitter.finatra.validation.{MethodValidation, ValidationResult}
 

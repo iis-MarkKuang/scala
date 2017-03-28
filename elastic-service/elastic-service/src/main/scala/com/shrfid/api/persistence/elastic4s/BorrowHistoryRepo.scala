@@ -3,7 +3,7 @@ package com.shrfid.api.persistence.elastic4s
 import javax.inject.{Inject, Singleton}
 
 import com.shrfid.api.Security
-import com.shrfid.api.domains.book.{BorrowHistory, TimeLocation}
+import com.shrfid.api.domains.readable.{BorrowHistory, TimeLocation}
 import com.shrfid.api.modules.Elastic4SModule._
 import com.twitter.util.Future
 

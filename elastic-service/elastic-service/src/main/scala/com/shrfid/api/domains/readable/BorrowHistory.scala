@@ -1,4 +1,6 @@
-package com.shrfid.api.domains.book
+package com.shrfid.api.domains.readable
+
+import java.util.Locale.Category
 
 import com.shrfid.api.Time
 import com.shrfid.api.persistence.elastic4s.BaseDoc
@@ -40,6 +42,21 @@ case class BookInfo(barcode: String,
   lazy val json = Json.toJson(this)
   lazy val jsonStringify = Json.stringify(json)
 }
+
+/*
+ Added by Kuang 2017/03/28
+ */
+case class PeriodicalInfo(barcode: String,
+                          rfid: String = "",
+                          reference: String = "",
+                          category: String = "",
+                          title: String = "",
+                          stack: String, // 馆藏库id
+                          clc: String = "") {
+  lazy val json = Json.toJson(this)
+  lazy val jsonStringify = Json.stringify(json)
+}
+
 
 object TimeLocation {
   implicit val fmt = Json.format[TimeLocation]

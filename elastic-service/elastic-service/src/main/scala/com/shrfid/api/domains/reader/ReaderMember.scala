@@ -1,6 +1,6 @@
 package com.shrfid.api.domains.reader
 
-import com.shrfid.api.domains.book.ReaderInfo
+import com.shrfid.api.domains.readable.ReaderInfo
 import com.shrfid.api.http.Elastic.reader.member.{PostReaderMemberRequest, ReaderMemberInsertion}
 import com.shrfid.api.persistence.elastic4s.BaseDoc
 import com.shrfid.api.{Config, Time}

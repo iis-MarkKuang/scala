@@ -1,9 +1,9 @@
-package com.shrfid.api.domains.book
+package com.shrfid.api.domains.readable
 
 import com.shrfid.api._
 import com.shrfid.api.persistence.elastic4s.BaseDoc
 import com.shrfid.api.persistence.slick.BaseEntity
-import com.shrfid.api.persistence.slick.book.BookItemEntity
+import com.shrfid.api.persistence.slick.readable.BookItemEntity
 import play.api.libs.json.Json
 
 /**
@@ -26,7 +26,7 @@ case class Book(barcode: String,
                 is_active: Boolean = true,
                 user: String = "", // 编目人
                 datetime: String = Time.now.toString, // 编目记录创建日期
-                description: String = "") extends BaseDoc {
+                description: String = "") extends BaseDoc with Readable{
 
   lazy val json = Json.toJson(this)
   lazy val jsonStringify = Json.stringify(json)

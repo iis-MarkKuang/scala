@@ -1,4 +1,4 @@
-package com.shrfid.api.persistence.slick.book
+package com.shrfid.api.persistence.slick.readable
 
 import javax.inject.{Inject, Singleton}
 
