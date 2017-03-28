@@ -501,7 +501,6 @@ class ElasticServiceImpl @Inject()(bookBranchRepo: BookBranchRepo,
           ids <- readerMemberRepo.dal.findIdsByGroupId(request.groupIds.get)
           result <- inactivateReaderMemberBulk(user, ids)
         } yield result
-
     }
   }
 
@@ -710,13 +709,13 @@ class ElasticServiceImpl @Inject()(bookBranchRepo: BookBranchRepo,
         } yield (ava) match {
           case true => reserveBookResponse("", s"图书在馆，请直接到馆借书", true)
           case false => reserveBookResponse(b, s"成功预约，您将在该书可以借阅时收到通知", true)
-            val f = bookItemRepo.dal.updateAvailability(b, false, now)
-            f onSuccess (
-              a => if(a._2 != 200)
-                reserveBookResponse("", "内部错误，请联系管理员", false)
-            ) onFailure (
-              ex => reserveBookResponse("", ex.getMessage, false)
-            )
+//            val f = bookItemRepo.dal.updateAvailability(b, false, now)
+//            f onSuccess (
+//              a => if(a._2 != 200)
+//                reserveBookResponse("", "内部错误，请联系管理员", false)
+//            ) onFailure (
+//              ex => reserveBookResponse("", ex.getMessage, false)
+//            )
         }
         case Some(id) => for {
 //          availability <- bookItemRepo.dal.findAll(_m = Seq(matchPhraseQuery("_id", id)), _n = Seq())

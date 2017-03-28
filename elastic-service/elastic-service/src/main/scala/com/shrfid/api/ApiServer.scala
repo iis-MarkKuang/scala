@@ -169,7 +169,8 @@ class ElasticServer
 class GetBookStackByIdRequestThriftImpl extends GetBookStackByIdRequestThrift {
   override def authorization = "Bearer TOKEN"
 
-  override def id = "3c893b3740b3a70b097247f68d9266b6"
+//  override def id = "3c893b3740b3a70b097247f68d9266b6"
+  override def id = "3c893b3740b3a70b097247f68d9266b611"
 }
 
 class PostBookStackRequestThriftImpl extends PostBookStackRequestThrift {
