@@ -1,21 +1,13 @@
 package com.shrfid.api.controllers
 
-
 import com.google.inject.Inject
-import com.shrfid.api.domains.reader.{BorrowRule => DomainBorrowRule, PenaltyRule => DomainPenaltyRule}
 import com.shrfid.api.services.ElasticService
 import com.twitter.finatra.thrift.Controller
 import com.elastic_service.elasticServer.ElasticServerThrift._
 import com.elastic_service.elasticServer._
 import com.twitter.finatra.http.response.ResponseBuilder
-import com.twitter.util.Future
-import com.shrfid.api.http.Elastic.book.item._
-import com.shrfid.api.http.Elastic.reader.group._
-import com.shrfid.api.http.Elastic.reader.level._
-import com.shrfid.api.http.Elastic.reader.member._
-import org.joda.time.DateTime
-import org.joda.time.format.DateTimeFormat
 import com.shrfid.api.services._
+import com.twitter.util.{Await, Future, Promise, Try}
 /**
   * Created by kuang on 2017/3/18.
   */
@@ -32,8 +24,8 @@ class ThriftController @Inject() (
   with ElasticServerThrift.BaseServiceIface {
 
   override val increment = handle(Increment) { args: Increment.Args =>
-    var res = "2"
 
+    var res = "2"
     val f = bookService.increment(args.a)
     f onSuccess(
       a => a match {
@@ -43,9 +35,8 @@ class ThriftController @Inject() (
           res = "0"
       }
     ) onFailure(
-      ex => res = ex.getMessage()
+      ex => res = ex.getMessage
     )
-
     Future(res)
   }
 

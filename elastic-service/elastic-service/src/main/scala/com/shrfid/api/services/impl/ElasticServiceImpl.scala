@@ -2,7 +2,6 @@ package com.shrfid.api.services.impl
 
 import javax.inject.{Inject, Singleton}
 
-import com.elastic_service.requestStructs.UpsertResponseThrift
 import com.shrfid.api.TwitterFutureOps._
 import com.shrfid.api._
 import com.shrfid.api.domains.book._
@@ -681,6 +680,10 @@ class ElasticServiceImpl @Inject()(bookBranchRepo: BookBranchRepo,
     )).map(a => (200, "[" + a.map(_._2).mkString(",") + "]"))
   }
 
+  private def _notifyReserve(reader_id: String, barcode: String) = {
+    // call phone api to send out text messages
+  }
+
   // reserve
   override def reserveBooks(user: Username, request: PostReaderMemberReserveItemsRequest): Future[(UpsertResponse)] = {
     _reserveBulk(user, request.bookBarcodes, request.location)
@@ -691,18 +694,30 @@ class ElasticServiceImpl @Inject()(bookBranchRepo: BookBranchRepo,
   }
 
   private def _reserve(user: Username, bookBarcode: String, location: String) = {
-    Future((200, "success"))
+    var bookBarcodes = Seq[String]()
+    bookBarcodes = bookBarcodes :+ bookBarcode
+    _reserveBulk(user, bookBarcodes, location)
   }
 
   private def _reserveBulk(user: Username, bookBarcodes: Seq[String], location: String) = {
     Future.collect(bookBarcodes.map(b => for {
       history <- borrowHistoryRepo.dal.findAll(_m = Seq(matchPhraseQuery("book.barcode", b)), _n = Seq(existsQuery("_return")))
       now = Time.now.toString
-
       result <- history.ids.headOption match {
-        case None =>
-
 //        case None => Future.value(reserveBookResponse("", s"图书在馆，请直接到馆借书", true))
+        case None => for {
+          ava <- bookItemRepo.dal.isAvailable(b)
+        } yield (ava) match {
+          case true => reserveBookResponse("", s"图书在馆，请直接到馆借书", true)
+          case false => reserveBookResponse(b, s"成功预约，您将在该书可以借阅时收到通知", true)
+            val f = bookItemRepo.dal.updateAvailability(b, false, now)
+            f onSuccess (
+              a => if(a._2 != 200)
+                reserveBookResponse("", "内部错误，请联系管理员", false)
+            ) onFailure (
+              ex => reserveBookResponse("", ex.getMessage, false)
+            )
+        }
         case Some(id) => for {
 //          availability <- bookItemRepo.dal.findAll(_m = Seq(matchPhraseQuery("_id", id)), _n = Seq())
           res <- borrowHistoryRepo.dal.reserveAt(id,TimeLocation(now, location), Time.nextNdays(7).toString, Time.now.toString)

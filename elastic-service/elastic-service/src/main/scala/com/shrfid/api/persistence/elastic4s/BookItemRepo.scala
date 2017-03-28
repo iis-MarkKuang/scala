@@ -41,7 +41,7 @@ class BookItemRepo @Inject()(db: Elastic4SDatabaseSource) {
       })
     }
 
-    def isAvailable(_id: String): Boolean = {
+    def isAvailable(_id: String): Future[Boolean] = {
       db.execute(indexExists("book")).toTwitterFuture.flatMap {
         case a => a.isExists match {
           case true =>
@@ -54,6 +54,7 @@ class BookItemRepo @Inject()(db: Elastic4SDatabaseSource) {
                 true
               }
         )
+          case false => Future(false)
         }
       }
     }

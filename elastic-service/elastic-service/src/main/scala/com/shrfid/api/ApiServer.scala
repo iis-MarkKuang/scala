@@ -225,6 +225,7 @@ object ElasticClientMain {
 
     futureRes2 onSuccess( a => println(a) )
     futureRes2 onFailure( ex => println(ex) )
+
     //    val futureRes2 = client.insertBookStack("user246", new PostBookStackRequestThriftImpl())
 //    futureRes2 onSuccess( a => println(a) )
 //    futureRes2 onFailure( ex => println(ex) )
