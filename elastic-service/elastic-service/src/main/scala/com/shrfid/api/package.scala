@@ -49,7 +49,7 @@ package object api {
   val BadRequestResponse = (message: String ) => s"""{"errors":["${message}"]}"""
 
   val EmptyList = (0, Seq())
-  val NotFound = "{\"result\": \"notfound\"}"
+  val NotFound = """{"result": "notfound"}"""
   val Empty = ""
   val InvalidToken = "InvalidToken"
   val NoPermission = "NoPermission"
