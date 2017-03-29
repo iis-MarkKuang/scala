@@ -3,7 +3,7 @@ package com.shrfid.api.services.impl
 import javax.inject.{Inject, Singleton}
 
 import com.shrfid.api.TwitterFutureOps._
-import com.shrfid.api._
+import com.shrfid.api.{UpdateResponse, _}
 import com.shrfid.api.domains.readable._
 import com.shrfid.api.domains.reader.{ReaderGroup, ReaderLevel, ReaderMember, ReaderMemberIsSuspend}
 import com.shrfid.api.domains.vendor.{VendorMember, VendorMemberWithId, VendorOrder, VendorOrderNested}
@@ -589,7 +589,7 @@ class ElasticServiceImpl @Inject()(redisService: RedisService,
             Future.value(borrowBookResponse("", "非流通图书, 请将其归还至管理员处, 谢谢!", false))
           case (true, true) => for {
             _ <- bookItemRepo.dal.updateAvailability(barcode, false)
-            borrowHistory = BorrowHistory.toDomain("borrow", readerMember.toReaderInfo(id), bookItem, TimeLocation(Time.now.toString, location), None, None, day)
+            borrowHistory = BorrowHistory.toDomain("borrow", readerMember.toReaderInfo(id), bookItem, TimeLocation(Time.now.toString, location), None, None, None, day)
             result <- borrowHistoryRepo.dal.insertDocReturnId(borrowHistory.jsonStringify)
           } yield result match {
             case (Status.Created.code, s, id) =>
@@ -672,14 +672,16 @@ class ElasticServiceImpl @Inject()(redisService: RedisService,
           ret <- borrowHistoryRepo.dal.returnAt(id, TimeLocation(now, location), now)
           ava <- bookItemRepo.dal.updateAvailability(b, true, now)
 
-          reserveRecord <- borrowHistoryRepo.dal.findAll(_m = Seq(matchPhraseQuery("book.barcode", b)), _n = Seq(existsQuery("_reserve")))
-          reserveResult <- reserveRecord.ids.headOption match {
-            case Some(id) => for {
+          reserveRecord <- borrowHistoryRepo.dal.findById(id)
+          reserveResult <- reserveRecord._1 match {
+            case 200 => for {
               notify <- borrowHistoryRepo.dal.reserveNotify(id, Time.now.toString, Time.nextNdays(3).toString)
-              availability <- bookItemRepo.dal.updateAvailability(b, false, now)
-              // do notify stuff(send text message)
-            } yield (notify._1, availability._1) match {
-              case (200, 200) => println(s"发送预约通知成功，${Time.now.toString}")
+              avail <- bookItemRepo.dal.updateAvailability(b, false, now)
+            } yield (notify._1, avail._1) match {
+              case (200, 200) =>
+                println(s"发送预约通知，${Time.now.toString}")
+                val readerId = Json.parse(reserveRecord._2).as[BorrowHistory].reader.id
+                _notifyReserve(readerId, b)
               case (_, _) => println(s"发送预约通知失败，${Time.now.toString}")
             }
           }
@@ -692,8 +694,9 @@ class ElasticServiceImpl @Inject()(redisService: RedisService,
     )).map(a => (200, "[" + a.map(_._2).mkString(",") + "]"))
   }
 
-  private def _notifyReserve(reader_id: String, barcode: String) = {
+  private def _notifyReserve(readerId: String, barcode: String) = {
     // call phone api to send out text messages
+    println("dummy")
   }
 
   // reserve
@@ -753,5 +756,7 @@ class ElasticServiceImpl @Inject()(redisService: RedisService,
     )).map(a => (200, "[" + a.map(_._2).mkString(",") + "]"))
   }
 
-
+  override def fineReaderMember(user: Username, request: PatchReaderMemberByIdRequest) = {
+    Future(updateResponse("a", "b", true, 123))
+  }
 }

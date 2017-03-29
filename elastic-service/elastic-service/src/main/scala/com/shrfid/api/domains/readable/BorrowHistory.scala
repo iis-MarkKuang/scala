@@ -73,8 +73,10 @@ object BorrowHistory {
 
   def toDomain(status: String, reader: ReaderInfo, book: Book, _borrow: TimeLocation,
                _return: Option[TimeLocation],
-               _renew: Option[TimeLocation], days: Int) = {
-    BorrowHistory(status, reader, book.toBookInfo, _borrow, _return, _renew,Time.nextNdays(days).toString)
+               _renew: Option[TimeLocation],
+               _reserve: Option[TimeLocation],
+               days: Int) = {
+    BorrowHistory(status, reader, book.toBookInfo, _borrow, _return, _renew, _reserve, Time.nextNdays(days).toString)
   }
 }
 
@@ -84,7 +86,9 @@ case class BorrowHistory(status: String,
                          _borrow: TimeLocation,
                          _return: Option[TimeLocation],
                          _renew: Option[TimeLocation],
+                         _reserve: Option[TimeLocation],
                          due_at: String,
+                         borrow_window: String = Time.nextNdays(3).toString,
                          datetime: String = Time.now.toString) extends BaseDoc {
   lazy val json = Json.toJson(this)
   lazy val jsonStringify = Json.stringify(json)

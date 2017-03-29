@@ -11,5 +11,5 @@ trait RedisService {
   def getUserInfo(token: String): Future[String]
 
   // added by kuang 2017-03-29
-  def reserve(barcode: String, readerId: String)
+  def reserve(barcode: String, readerId: String): Future[Unit]
 }

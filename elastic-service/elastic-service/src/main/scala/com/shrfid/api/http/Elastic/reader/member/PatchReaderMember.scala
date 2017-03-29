@@ -40,7 +40,7 @@ object PatchReaderMemberByIdRequest {
       requestThrift.days,
       requestThrift.barcode,
       requestThrift.rfid,
-      Some(1.22),
+      requestThrift.credit,
       requestThrift.fullName,
       requestThrift.gender,
       requestThrift.email,
