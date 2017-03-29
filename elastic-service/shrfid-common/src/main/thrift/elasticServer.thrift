@@ -9,7 +9,7 @@ service ElasticServerThrift {
    * Increment a number\
    **/
   string increment(
-    1: i32 a
+    1: required i32 a
   ) throws (
     1: finatra_thrift_exceptions.ServerError serverError,
     2: finatra_thrift_exceptions.UnknownClientIdError unknownClientIdError,
@@ -17,8 +17,8 @@ service ElasticServerThrift {
   )
 
   string updateBookInfoItem(
-    1: string id,
-    2: string item,
+    1: required string id,
+    2: required string item
     3: optional string oldId
   )
 

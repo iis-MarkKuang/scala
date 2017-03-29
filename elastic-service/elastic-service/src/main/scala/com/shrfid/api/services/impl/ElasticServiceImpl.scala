@@ -17,7 +17,7 @@ import com.shrfid.api.http.Elastic.stack._
 import com.shrfid.api.http.Elastic.vendor.member._
 import com.shrfid.api.http.Elastic.vendor.order._
 import com.shrfid.api.persistence.elastic4s._
-import com.shrfid.api.services.ElasticService
+import com.shrfid.api.services.{ElasticService, RedisService}
 import com.sksamuel.elastic4s.ElasticDsl._
 import com.twitter.finagle.http.Status
 import com.twitter.util.Future
@@ -31,7 +31,8 @@ import play.api.libs.json.Json
 object ElasticServiceImpl
 
 @Singleton
-class ElasticServiceImpl @Inject()(bookBranchRepo: BookBranchRepo,
+class ElasticServiceImpl @Inject()(redisService: RedisService,
+                                   bookBranchRepo: BookBranchRepo,
                                    bookStackRepo: BookStackRepo,
                                    bookItemRepo: BookItemRepo,
                                    bookReferenceRepo: BookReferenceRepo,
@@ -202,7 +203,7 @@ class ElasticServiceImpl @Inject()(bookBranchRepo: BookBranchRepo,
     result
   }
 
-  private def catalogue(request: PostBookItemRequest, reference: String, title: Option[String], clc: Option[String], user: Username): Future[UpsertResponse] = {
+  private def _catalogue(request: PostBookItemRequest, reference: String, title: Option[String], clc: Option[String], user: Username): Future[UpsertResponse] = {
     val titleFixed = title match {
       case Some(t) => t
       case None => request.info.get.题名与责任者.正题名
@@ -231,7 +232,7 @@ class ElasticServiceImpl @Inject()(bookBranchRepo: BookBranchRepo,
 
     for {
       (ref, title, clc) <- findRefTitleClc
-      result <- catalogue(request, ref, title, clc, user)
+      result <- _catalogue(request, ref, title, clc, user)
     } yield result
   }
 
@@ -604,7 +605,7 @@ class ElasticServiceImpl @Inject()(bookBranchRepo: BookBranchRepo,
 
   }
 
-
+  // Logic: renew and reserve preferences
   // renew
   override def renewItems(user: Username, request: PostReaderMemberRenewItemsRequest): Future[(StatusCode, Docs)] = {
     for {
@@ -670,6 +671,18 @@ class ElasticServiceImpl @Inject()(bookBranchRepo: BookBranchRepo,
         case Some(id) => for {
           ret <- borrowHistoryRepo.dal.returnAt(id, TimeLocation(now, location), now)
           ava <- bookItemRepo.dal.updateAvailability(b, true, now)
+
+          reserveRecord <- borrowHistoryRepo.dal.findAll(_m = Seq(matchPhraseQuery("book.barcode", b)), _n = Seq(existsQuery("_reserve")))
+          reserveResult <- reserveRecord.ids.headOption match {
+            case Some(id) => for {
+              notify <- borrowHistoryRepo.dal.reserveNotify(id, Time.now.toString, Time.nextNdays(3).toString)
+              availability <- bookItemRepo.dal.updateAvailability(b, false, now)
+              // do notify stuff(send text message)
+            } yield (notify._1, availability._1) match {
+              case (200, 200) => println(s"发送预约通知成功，${Time.now.toString}")
+              case (_, _) => println(s"发送预约通知失败，${Time.now.toString}")
+            }
+          }
         } yield (ret._1, ava._1) match {
           case (200, 200) => returnBookResponse(id, s"成功归还, 归还时间为${now}", true)
           case (_, _) => returnBookResponse("", "内部错误, 请联系管理员", false)
@@ -708,7 +721,17 @@ class ElasticServiceImpl @Inject()(bookBranchRepo: BookBranchRepo,
           ava <- bookItemRepo.dal.isAvailable(b)
         } yield (ava) match {
           case true => reserveBookResponse("", s"图书在馆，请直接到馆借书", true)
-          case false => reserveBookResponse(b, s"成功预约，您将在该书可以借阅时收到通知", true)
+          case false =>
+            reserveBookResponse(b, s"成功预约，您将在该书可以借阅时收到通知", true)
+
+//          case false => book: String => for {
+//            res <- borrowHistoryRepo.dal.reserveAt(book,TimeLocation(now, location), Time.nextNdays(3).toString, Time.now.toString)
+//            ava <- bookItemRepo.dal.updateAvailability(book, false, now)
+//          } yield (res._1, ava._1) match {
+//            case(200, 200) => reserveBookResponse(book, s"成功预约，您将在该书可以借阅时收到通知", true)
+//            case(_, _) => reserveBookResponse("", "内部错误，请联系管理员", false)
+//          }
+
 //            val f = bookItemRepo.dal.updateAvailability(b, false, now)
 //            f onSuccess (
 //              a => if(a._2 != 200)
@@ -719,7 +742,7 @@ class ElasticServiceImpl @Inject()(bookBranchRepo: BookBranchRepo,
         }
         case Some(id) => for {
 //          availability <- bookItemRepo.dal.findAll(_m = Seq(matchPhraseQuery("_id", id)), _n = Seq())
-          res <- borrowHistoryRepo.dal.reserveAt(id,TimeLocation(now, location), Time.nextNdays(7).toString, Time.now.toString)
+          res <- borrowHistoryRepo.dal.reserveAt(id,TimeLocation(now, location), Time.now.toString)
           ava <- bookItemRepo.dal.updateAvailability(b, false, now)
         } yield (res._1, ava._1) match {
           case (200, 200) => reserveBookResponse(id, s"成功预约，您将在该书可以借阅时收到通知", true)
@@ -729,4 +752,6 @@ class ElasticServiceImpl @Inject()(bookBranchRepo: BookBranchRepo,
     } yield result
     )).map(a => (200, "[" + a.map(_._2).mkString(",") + "]"))
   }
+
+
 }

@@ -60,5 +60,7 @@ class RedisServiceImpl @Inject()(redisClient: Client) extends RedisService {
     get(token)
   }
 
-
+  override def reserve(barcode: String, readerId: String): Future[Unit] = {
+    setEx(barcode, Config.reserveExpirationDelta, readerId)
+  }
 }

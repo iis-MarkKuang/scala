@@ -32,7 +32,7 @@ case class PeriodicalItemEntity(id: Int,
                                 categoryId: Int, // 文献类型 待补充
                                 stackId: Int, // 馆藏库id
                                 clc: Option[String],
-                                PeriodicalIndex: Option[Int], //书次号
+                                periodicalIndex: Option[Int], //书次号
                                 isAvailable: Boolean, //图书是否(在借或者在馆但被预约)
                                 isActive: Boolean,
                                 userId: Option[Int], // 编目人
@@ -120,7 +120,7 @@ class PeriodicalItemRepository @Inject()(db: SlickDatabaseSource) {
     private val filter = (ids: Option[Seq[Int]], references: Option[Seq[String]], titles: Option[Seq[String]],
                           barcodes: Option[Seq[String]], rfids: Option[Seq[String]], categoryIds: Option[Seq[Int]],
                           stackIds: Option[Seq[Int]], clcs: Option[Seq[String]],
-                          bookIndexes: Option[Seq[Int]], isAvailable: Option[Boolean], isActive: Option[Boolean]) => {
+                          periodicalIndexs: Option[Seq[Int]], isAvailable: Option[Boolean], isActive: Option[Boolean]) => {
       periodicalItems.filter { it =>
         List(
           ids.map(it.id.inSetBind(_)),
@@ -129,7 +129,18 @@ class PeriodicalItemRepository @Inject()(db: SlickDatabaseSource) {
           stackIds.map(it.stackId.inSetBind(_)),
           isAvailable.map(it.isAvailable === _),
           isActive.map(it.isActive === _)
-        ).collect({ case Some(it) => it }).reduceLeftOption(Logic)
+        ).collect({ case Some(it) => it }).reduceLeftOption(logic(_, _, "and")).getOrElse(LiteralColumn(1) === LiteralColumn(1))
+      }.filter { it =>
+        List(
+          references.map(a => it.reference.nonEmpty && it.reference.inSetBind(a)),
+          titles.map(it.title.nonEmpty && it.title.inSetBind(_)),
+          rfids.map(it.rfid.nonEmpty && it.rfid.inSetBind(_)),
+          clcs.map(it.clc.nonEmpty && it.clc.inSetBind(_)),
+          periodicalIndexs.map(it.periodicalIndex.nonEmpty && it.periodicalIndex.inSetBind(_))
+        ).collect({ case Some(it) => it }) match {
+          case a if a.isEmpty => LiteralColumn(1) === LiteralColumn(1)
+          case other => other.reduce(_ && _).getOrElse(LiteralColumn(1) === LiteralColumn(1))
+        }
       }
     }
   }

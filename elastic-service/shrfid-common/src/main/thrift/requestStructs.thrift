@@ -48,40 +48,41 @@ struct CommonResponseThrift {
     2: required Docs docs
 }
 
-struct UpsertResponseThrift {
-    1: required StatusCode statusCode;
-    2: required Docs docs
-}
-
-struct GetResponseThrift {
-    1: required StatusCode statusCode;
-    2: required Docs docs
-}
-
-struct DeleteResponseThrift {
-    1: required StatusCode statusCode;
-    2: required Docs docs
-}
-
-struct SearchResponseThrift {
-    1: required StatusCode statusCode;
-    2: required Docs docs
-}
-
-struct IndesResponseThrift {
-    1: required StatusCode statusCode;
-    2: required Docs docs
-}
-
-struct SearchDocsResponseThrift {
-    1: required StatusCode statusCode;
-    2: required Docs docs
-}
-
-struct UpdateResponseThrift {
-    1: required StatusCode statusCode;
-    2: required Docs docs
-}
+//
+//struct UpsertResponseThrift {
+//    1: required StatusCode statusCode;
+//    2: required Docs docs
+//}
+//
+//struct GetResponseThrift {
+//    1: required StatusCode statusCode;
+//    2: required Docs docs
+//}
+//
+//struct DeleteResponseThrift {
+//    1: required StatusCode statusCode;
+//    2: required Docs docs
+//}
+//
+//struct SearchResponseThrift {
+//    1: required StatusCode statusCode;
+//    2: required Docs docs
+//}
+//
+//struct IndesResponseThrift {
+//    1: required StatusCode statusCode;
+//    2: required Docs docs
+//}
+//
+//struct SearchDocsResponseThrift {
+//    1: required StatusCode statusCode;
+//    2: required Docs docs
+//}
+//
+//struct UpdateResponseThrift {
+//    1: required StatusCode statusCode;
+//    2: required Docs docs
+//}
 
 struct PostBookBranchRequestThrift {
     1: required string Authorization;
@@ -523,18 +524,19 @@ struct PatchReaderMemberByIdRequestThrift {
     4: optional i32 days;
     5: optional string barcode;
     6: optional string rfid;
-    7: optional string fullName;
-    8: optional string gender;
-    9: optional string email;
-    10: optional string mobile;
-    11: optional string address;
-    12: optional string postcode;
-    13: optional string dob;
-    14: optional string levelId;
-    15: optional list<string> groupIds;
-    16: optional string profileImage;
-    17: optional bool isActive;
-    18: string datetime
+    7: optional double credit;
+    8: optional string fullName;
+    9: optional string gender;
+    10: optional string email;
+    11: optional string mobile;
+    12: optional string address;
+    13: optional string postcode;
+    14: optional string dob;
+    15: optional string levelId;
+    16: optional list<string> groupIds;
+    17: optional string profileImage;
+    18: optional bool isActive;
+    19: string datetime
 }
 
 struct PostReaderMemberBorrowItemsRequestThrift {

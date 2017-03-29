@@ -26,8 +26,12 @@ class BorrowHistoryRepo @Inject()(db: Elastic4SDatabaseSource) {
     def renewAt(_id: String, _renew: TimeLocation, dueAt: String, now: String) = {
       this.updateDoc(_id, Map("_renew" -> Map("location" -> _renew.location, "datetime" -> _renew.datetime), "due_at" -> dueAt, "datetime" -> now, "status"-> "renew"))
     }
-    def reserveAt(_id: String, _reserve: TimeLocation, latestBorrowAt: String, now: String) = {
-      this.updateDoc(_id, Map("_reserve" -> Map("location" -> _reserve.location, "datetime" -> _reserve.datetime), "latest_borrow_at" -> latestBorrowAt, "datetime" -> now, "status"->"reserve"))
+    def reserveAt(_id: String, _reserve: TimeLocation, now: String) = {
+      this.updateDoc(_id, Map("_reserve" -> Map("location" -> _reserve.location, "datetime" -> _reserve.datetime), "datetime" -> now, "status"->"reserve"))
+    }
+    // called when reserved readables turn available
+    def reserveNotify(_id: String, now: String, borrowWindow: String) = {
+      this.updateDoc(_id, Map("datetime" -> now, "borrowWindow" -> borrowWindow))
     }
   }
 }

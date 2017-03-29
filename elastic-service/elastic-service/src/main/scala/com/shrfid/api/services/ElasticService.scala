@@ -179,5 +179,9 @@ trait ElasticService {
 
   // reserve
   def reserveBooks(user: Username, request: PostReaderMemberReserveItemsRequest): Future[UpsertResponse]
+
   def reserveBook(user: Username, request: PostReaderMemberReserveItemRequest): Future[UpsertResponse]
+
+  // fines
+  def fineReaderMember(user: Username, request: PatchReaderMemberByIdRequest): Future[UpdateResponse]
 }

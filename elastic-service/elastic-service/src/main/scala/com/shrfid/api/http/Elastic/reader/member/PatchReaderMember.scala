@@ -40,6 +40,7 @@ object PatchReaderMemberByIdRequest {
       requestThrift.days,
       requestThrift.barcode,
       requestThrift.rfid,
+      Some(1.22),
       requestThrift.fullName,
       requestThrift.gender,
       requestThrift.email,
@@ -54,13 +55,14 @@ object PatchReaderMemberByIdRequest {
     )
   }
 }
-
+// modified 2017-03-29 to add credit changes
 case class PatchReaderMemberByIdRequest(@Header Authorization: String,
                                         @RouteParam id: String,
                                         @QueryParam action: String,
                                         days: Option[Int],
                                         barcode: Option[String],
                                         rfid: Option[String],
+                                        credit: Option[Double],
                                         fullName: Option[String],
                                         gender: Option[String],
                                         email: Option[String],

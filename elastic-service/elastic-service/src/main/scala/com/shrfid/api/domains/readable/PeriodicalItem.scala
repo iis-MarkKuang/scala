@@ -3,7 +3,7 @@ package com.shrfid.api.domains.readable
 import com.shrfid.api._
 import com.shrfid.api.persistence.elastic4s.BaseDoc
 import com.shrfid.api.persistence.slick.BaseEntity
-import com.shrfid.api.persistence.slick.readable.BookItemEntity
+import com.shrfid.api.persistence.slick.readable.{BookItemEntity, PeriodicalItemEntity}
 import play.api.libs.json.Json
 
 /**
@@ -73,5 +73,33 @@ case class PeriodicalWithId(id: String,
 object PeriodicalItem {
   implicit val periodicalItemFmt = Json.format[PeriodicalItem]
 
-  def toDomain(p: PeriodicalItemEntity)
+  def toDomain(p: PeriodicalItemEntity): PeriodicalItem = {
+    PeriodicalItem(p.id,
+      optionStrToStr(p.reference),
+      optionStrToStr(p.title),
+      p.barcode,
+      optionStrToStr(p.rfid),
+      itemCategory(p.categoryId),
+      p.stackId,
+      optionStrToStr(p.clc),
+      p.periodicalIndex,
+      p.isAvailable,
+      p.userId,
+      p.createAt.toString,
+      p.updateAt.toString)
+  }
 }
+
+case class PeriodicalItem(id: Int,
+                    reference: String,
+                    title: String,
+                    barcode: String,
+                    rfid: String,
+                    category: String, // 文献类型 待补充
+                    stackId: Int,
+                    clc: String,
+                    periodicalIndex: Option[Int], // 书次号
+                    isAvailable: Boolean, // 图书是否在借
+                    userId: Option[Int], // 编目人
+                    createAt: String, // 编目记录创建日期
+                    updateAt: String) extends BaseEntity

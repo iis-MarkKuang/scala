@@ -191,6 +191,14 @@ package object api {
     case "非书资料" => 4
   }
 
+  /*
+   * Added by Kuang 2017-03-29
+   */
+  def periodicalCategoryId(s: String) = s match {
+    case "普通期刊" => 1
+    case "XXX" => 2
+  }
+
   object Security {
     def digest(s: String) = MessageDigest.getInstance("MD5").digest(s.getBytes).map("%02x".format(_)).mkString
   }

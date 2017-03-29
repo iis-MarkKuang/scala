@@ -46,6 +46,10 @@ case class BookInfo(barcode: String,
 /*
  Added by Kuang 2017/03/28
  */
+object PeriodicalInfo {
+  implicit val fmt = Json.format[PeriodicalInfo]
+}
+
 case class PeriodicalInfo(barcode: String,
                           rfid: String = "",
                           reference: String = "",
@@ -56,7 +60,6 @@ case class PeriodicalInfo(barcode: String,
   lazy val json = Json.toJson(this)
   lazy val jsonStringify = Json.stringify(json)
 }
-
 
 object TimeLocation {
   implicit val fmt = Json.format[TimeLocation]

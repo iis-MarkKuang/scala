@@ -26,6 +26,7 @@ object Config {
   lazy val redisDb: String = conf.getString("redis.url")
   lazy val tokenExpirationDelta: Long = conf.getLong("redis.tokenExpirationDelta")
   lazy val cacheExpirationDelta: Long = conf.getLong("redis.cacheExpirationDelta")
+  lazy val reserveExpirationDelta: Long = conf.getLong("redis.reserveExpirationDelta")
 
   lazy val elasticUrl: String = conf.getString("elastic.url")
 

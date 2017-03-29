@@ -32,9 +32,9 @@ class BookItemRepo @Inject()(db: Elastic4SDatabaseSource) {
 
     def findNextBookIndex(clc: String) = {
       db.execute(
-      search(_index / _type) termQuery("clc.keyword", clc) fetchSource (false) aggregations (
-      maxAggregation("book_index").field("book_index")
-      )
+        search(_index / _type) termQuery("clc.keyword", clc) fetchSource (false) aggregations (
+          maxAggregation("book_index").field("book_index")
+        )
       ).toTwitterFuture.map(a => a.aggregations.maxResult("book_index").value() match {
         case a if a.isInfinity => 1
         case b => b.toInt
