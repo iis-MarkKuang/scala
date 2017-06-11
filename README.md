@@ -1,2 +1,1 @@
-# scala
-scala leisure project
+#scala_leisure_project
